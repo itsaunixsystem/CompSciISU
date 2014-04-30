@@ -3,7 +3,7 @@ package com.github.itsaunixsystem.chunks;
 import com.badlogic.gdx.math.Vector2;
 
 public abstract class Entity {
-    private Vector2 pos;
+    protected Vector2 pos;
 
     public Entity(Vector2 pos)
     {
@@ -44,4 +44,6 @@ public abstract class Entity {
     {
         return pos.y;
     }
+
+    public abstract void update(float delta);
 }
