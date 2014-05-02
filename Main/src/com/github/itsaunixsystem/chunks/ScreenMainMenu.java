@@ -1,6 +1,8 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class ScreenMainMenu extends Screen {
     public ScreenMainMenu(Game game) {
@@ -9,7 +11,6 @@ public class ScreenMainMenu extends Screen {
 
     @Override
     public void render(float delta) {
-
     }
 
     @Override
