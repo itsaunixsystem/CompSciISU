@@ -10,21 +10,22 @@ public class Imp {
     private Vector2 size;
     private float stateTime = 0;
 
-    public Imp(Texture tex)
-    {
+    public Imp(Texture tex) {
         animation = new Animation(1f, new TextureRegion(tex));
         size = new Vector2(tex.getWidth(), tex.getHeight());
     }
 
-    public Imp(Animation animation, float width, float height)
-    {
+    public Imp(Animation animation, float width, float height) {
         this.animation = animation;
         size = new Vector2(width, height);
     }
 
-    public TextureRegion getFrame(float delta)
-    {
+    public TextureRegion getFrame(float delta) {
         stateTime += delta;
         return animation.getKeyFrame(stateTime, true);
+    }
+
+    public void resetStateTime() {
+        stateTime = 0;
     }
 }
