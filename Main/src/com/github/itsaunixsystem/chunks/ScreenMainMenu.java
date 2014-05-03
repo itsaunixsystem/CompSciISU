@@ -1,21 +1,42 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-public class ScreenMainMenu extends Screen {
+import java.awt.geom.Rectangle2D;
+
+public class ScreenMainMenu extends GuiScreen {
+    protected SpriteBatch batch;
+    protected Texture background;
+
     public ScreenMainMenu(Game game) {
         super(game);
+        System.out.println("New main menu!");
+        batch = new SpriteBatch();
+        background = new Texture(Gdx.files.internal("Main/res/chunks.jpg"));
     }
 
     @Override
-    public void render(float delta) {
+    public void drawScreen(float delta) {
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
+        batch.begin();
+        batch.draw(background, 0, 0);
+        batch.end();
+    }
+
+    @Override
+    public void init() {
+        addElement(new GuiButton(new Rectangle2D.Float(200, 100, 400, 48), () -> System.out.println("Clicked 1!")));
+        addElement(new GuiButton(new Rectangle2D.Float(200, 300, 400, 48), () -> System.out.println("Clicked 2!")));
     }
 
     @Override
     public void resize(int width, int height) {
-
+        super.resize(width, height);
     }
 
     @Override
@@ -42,4 +63,63 @@ public class ScreenMainMenu extends Screen {
     public void dispose() {
 
     }
+
+
+
+    @Override
+    public boolean keyDown(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyUp(int keycode) {
+        return false;
+    }
+
+    @Override
+    public boolean keyTyped(char character) {
+        return false;
+    }
+
+    @Override
+    public boolean scrolled(int amount) {
+        return false;
+    }
+
+    //-------------GUI---------------
+//
+//    @Override
+//    public boolean keyDown(int keycode) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean keyUp(int keycode) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean keyTyped(char character) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean touchDragged(int screenX, int screenY, int pointer) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean mouseMoved(int screenX, int screenY) {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean scrolled(int amount) {
+//        return false;
+//    }
 }
