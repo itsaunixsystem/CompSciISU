@@ -1,11 +1,15 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 
 public abstract class GuiScreen extends Screen implements com.badlogic.gdx.InputProcessor {
     private ArrayList<GuiElement> elements;
+    protected SpriteBatch batch;
+    protected Texture defaultBackground;
 
     public GuiScreen(ChunksGame game) {
         super(game);
@@ -20,6 +24,9 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
                 break;
             default:
         }
+
+        batch = new SpriteBatch();
+        defaultBackground = new Texture(Gdx.files.internal("Main/res/waterfall.png"));
     }
 
     @Override
@@ -92,6 +99,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     {
         elements.stream().filter(element -> element instanceof GuiBase).forEach(element -> ((GuiBase) element).refreshRenderer());
         cachedHeight = height;
+        batch = new SpriteBatch();
     }
 
     @Override

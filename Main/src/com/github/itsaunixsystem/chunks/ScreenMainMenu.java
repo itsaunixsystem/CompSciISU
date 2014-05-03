@@ -2,20 +2,15 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.geom.Rectangle2D;
 
 public class ScreenMainMenu extends GuiScreen {
-    protected SpriteBatch batch;
-    protected Texture background;
+
 
     public ScreenMainMenu(ChunksGame game) {
         super(game);
         System.out.println("New main menu!");
-        batch = new SpriteBatch();
-        background = new Texture(Gdx.files.internal("Main/res/waterfall.png"));
     }
 
     @Override
@@ -23,7 +18,7 @@ public class ScreenMainMenu extends GuiScreen {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         batch.begin();
-        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(defaultBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
     }
 
@@ -36,7 +31,6 @@ public class ScreenMainMenu extends GuiScreen {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
-        batch = new SpriteBatch();
     }
 
     @Override
