@@ -16,7 +16,7 @@ public class ScreenMainMenu extends GuiScreen {
         super(game);
         System.out.println("New main menu!");
         batch = new SpriteBatch();
-        background = new Texture(Gdx.files.internal("Main/res/chunks.jpg"));
+        background = new Texture(Gdx.files.internal("Main/res/waterfall.png"));
     }
 
     @Override
@@ -24,7 +24,7 @@ public class ScreenMainMenu extends GuiScreen {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         batch.begin();
-        batch.draw(background, 0, 0);
+        batch.draw(background, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
     }
 
@@ -37,6 +37,7 @@ public class ScreenMainMenu extends GuiScreen {
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
+        batch = new SpriteBatch();
     }
 
     @Override
