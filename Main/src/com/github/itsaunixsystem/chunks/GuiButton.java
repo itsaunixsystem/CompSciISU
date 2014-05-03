@@ -29,7 +29,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         if(hovering()) {
-            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.1f);
+            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.8f);
             shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
 
             if(Gdx.input.isButtonPressed(0) ||
@@ -37,12 +37,12 @@ public class GuiButton extends GuiBase implements GuiClickable {
                     Gdx.app.getType() == Application.ApplicationType.iOS) {
                 shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
             } else {
-                shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
+                shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.7f);
             }
 
             shapeRenderer.rect(getX() + 2, getY() + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
         } else {
-            shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.9f);
+            shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.8f);
             shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
             shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.7f);
             shapeRenderer.rect(getX() + 2, getY() + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
