@@ -13,6 +13,14 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         elements = new ArrayList<>();
         cachedHeight = Gdx.graphics.getHeight();
         init();
+        switch(Gdx.app.getType()) {
+            case Desktop:
+            case HeadlessDesktop:
+            case Applet:
+                mouseMoved(Gdx.input.getX(), Gdx.input.getY());
+                break;
+            default:
+        }
     }
 
     @Override
