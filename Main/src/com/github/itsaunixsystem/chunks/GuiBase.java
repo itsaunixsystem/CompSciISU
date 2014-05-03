@@ -2,10 +2,11 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.geom.Rectangle2D;
 
-public abstract class GuiBase implements GuiElement {
+public abstract class GuiBase implements GuiElement, FontDrawer {
     protected Rectangle2D.Float outline;
     protected GuiRenderer renderer;
     protected ElementPositionStyle posStyle;
@@ -39,6 +40,14 @@ public abstract class GuiBase implements GuiElement {
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         draw(delta);
         gl.glDisable(GL20.GL_BLEND);
+    }
+
+    @Override
+    public void drawText(String text, float x, float y) {
+        SpriteBatch spriteBatch = renderer.getSpriteBatch();
+        spriteBatch.begin();
+        renderer.getFontRenderer().draw(spriteBatch, text, x, y);
+        spriteBatch.end();
     }
 
     protected abstract void draw(float delta);

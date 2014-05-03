@@ -2,7 +2,6 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
@@ -49,12 +48,9 @@ public class GuiButton extends GuiBase implements GuiClickable {
         }
         shapeRenderer.end();
 
-        SpriteBatch spriteBatch = renderer.getSpriteBatch();
-        spriteBatch.begin();
-        renderer.getFontRenderer().draw(spriteBatch, text,
+        drawText(text,
                 (float) (getX() + outline.getWidth() / 2 - renderer.getFontRenderer().getSpaceWidth() * text.length() / 2),
                 (float) (getY() + outline.getHeight() / 2 + renderer.getFontRenderer().getCapHeight() / 2));
-        spriteBatch.end();
     }
 
     @Override
