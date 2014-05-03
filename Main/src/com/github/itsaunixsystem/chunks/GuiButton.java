@@ -24,7 +24,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
     }
 
     @Override
-    public void render(float delta) {
+    public void draw(float delta) {
         ShapeRenderer shapeRenderer = this.renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 

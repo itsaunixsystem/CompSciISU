@@ -1,6 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 
 import java.awt.geom.Rectangle2D;
 
@@ -30,6 +31,17 @@ public abstract class GuiBase implements GuiElement {
     public boolean withinBounds(int x, int y) {
         return new Rectangle2D.Float(getX(), getY(), outline.width, outline.height).contains(x, y);
     }
+
+    @Override
+    public void render(float delta) {
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glEnable(GL20.GL_BLEND);
+        gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+        draw(delta);
+        gl.glDisable(GL20.GL_BLEND);
+    }
+
+    protected abstract void draw(float delta);
 
     public void refreshRenderer() {
         renderer.reset();
