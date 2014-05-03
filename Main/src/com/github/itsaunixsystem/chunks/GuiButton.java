@@ -1,5 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -24,7 +26,13 @@ public class GuiButton extends GuiBase implements GuiClickable {
         if(hovering()) {
             shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.1f);
             shapeRenderer.rect(outline.x, outline.y, (float) outline.getWidth(), (float) outline.getHeight());
-            shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
+            if(Gdx.input.isButtonPressed(0) ||
+                    Gdx.app.getType() == Application.ApplicationType.Android ||
+                    Gdx.app.getType() == Application.ApplicationType.iOS) {
+                shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
+            } else {
+                shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
+            }
             shapeRenderer.rect(outline.x + 2, outline.y + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
         } else {
             shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.9f);
