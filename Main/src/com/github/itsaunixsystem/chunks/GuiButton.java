@@ -1,34 +1,45 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
 
 public class GuiButton extends GuiBase implements GuiClickable {
     protected boolean pointerHovering[];
-    protected ClickAction onClick;
+    protected GuiClickable onClick;
+    protected String text;
 
-    public GuiButton(Rectangle2D.Float outline, ClickAction onClick) {
+    public GuiButton(String text, Rectangle2D.Float outline, GuiClickable onClick) {
         super(outline);
         this.onClick = onClick;
         pointerHovering = new boolean[20]; //Max 20 fingers or game breaks
+        this.text = text;
     }
 
     @Override
     public void render(float delta) {
-        renderer.begin(ShapeRenderer.ShapeType.Filled);
+        ShapeRenderer shapeRenderer = this.renderer.getShapeRenderer();
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         if(hovering()) {
-            renderer.setColor(0.6f, 0.6f, 0.6f, 0.1f);
-            renderer.rect(outline.x, outline.y, (float) outline.getWidth(), (float) outline.getHeight());
-            renderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
-            renderer.rect(outline.x + 2, outline.y + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
+            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.1f);
+            shapeRenderer.rect(outline.x, outline.y, (float) outline.getWidth(), (float) outline.getHeight());
+            shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.5f);
+            shapeRenderer.rect(outline.x + 2, outline.y + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
         } else {
-            renderer.setColor(0.5f, 0.5f, 0.5f, 0.9f);
-            renderer.rect(outline.x, outline.y, (float) outline.getWidth(), (float) outline.getHeight());
-            renderer.setColor(0.6f, 0.6f, 0.6f, 0.7f);
-            renderer.rect(outline.x + 2, outline.y + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
+            shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.9f);
+            shapeRenderer.rect(outline.x, outline.y, (float) outline.getWidth(), (float) outline.getHeight());
+            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.7f);
+            shapeRenderer.rect(outline.x + 2, outline.y + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
         }
-        renderer.end();
+        shapeRenderer.end();
+
+        SpriteBatch spriteBatch = renderer.getSpriteBatch();
+        spriteBatch.begin();
+        renderer.getFontRenderer().draw(spriteBatch, text,
+                (float) (outline.x + outline.getWidth() / 2 - renderer.getFontRenderer().getSpaceWidth() * text.length() / 2),
+                (float) (outline.y + outline.getHeight() / 2 + renderer.getFontRenderer().getCapHeight() / 2));
+        spriteBatch.end();
     }
 
     @Override

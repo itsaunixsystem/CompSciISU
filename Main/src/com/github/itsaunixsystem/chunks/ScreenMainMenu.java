@@ -30,8 +30,8 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void init() {
-        addElement(new GuiButton(new Rectangle2D.Float(200, 100, 400, 48), () -> System.out.println("Clicked 1!")));
-        addElement(new GuiButton(new Rectangle2D.Float(200, 300, 400, 48), () -> System.out.println("Clicked 2!")));
+        addElement(new GuiButton("Prints \"Clicked 1!\"", new Rectangle2D.Float(200, 100, 400, 48), () -> System.out.println("Clicked 1!")));
+        addElement(new GuiButton("Prints \"Clicked 2!\"", new Rectangle2D.Float(200, 300, 400, 48), () -> System.out.println("Clicked 2!")));
     }
 
     @Override

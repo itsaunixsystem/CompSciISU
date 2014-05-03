@@ -37,7 +37,6 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         screenY = flipY(screenY);
 
-        System.out.println("Click at " + screenX + ", " + screenY);
         return true;
     }
 
@@ -84,8 +83,16 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
 
     public void resize (int width, int height)
     {
-        elements.stream().filter(element -> element instanceof GuiBase).forEach(element -> ((GuiBase) element).refreshShapeRenderer());
+        elements.stream().filter(element -> element instanceof GuiBase).forEach(element -> ((GuiBase) element).refreshRenderer());
         cachedHeight = height;
     }
+
+    @Override
+    public void dispose() {
+        for(GuiElement element : elements) {
+            element.dispose();
+        }
+    }
+
     //public abstract boolean mouseMoved(int screenX, int screenY, int button);
 }

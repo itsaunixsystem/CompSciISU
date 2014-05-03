@@ -7,4 +7,6 @@ public interface GuiElement {
     public void mouseDragged(int screenX, int screenY, int pointer);
     public void onHover(int pointer);
     public void offHover(int pointer);
+
+    public void dispose();
 }
