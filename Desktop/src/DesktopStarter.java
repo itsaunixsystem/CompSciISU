@@ -8,6 +8,7 @@ public class DesktopStarter {
         cfg.title = "CHUNKSDEV";
         cfg.width = 800;
         cfg.height = 480;
+        cfg.useGL30 = false;
         new LwjglApplication(new ChunksGame(), cfg);
     }
 }
