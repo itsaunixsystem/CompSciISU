@@ -1,6 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -36,6 +37,12 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         {
             element.render(delta);
         }
+    }
+
+    protected void drawDefaultBackground() {
+        batch.begin();
+        batch.draw(defaultBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.end();
     }
 
     protected void addElement(GuiElement element)

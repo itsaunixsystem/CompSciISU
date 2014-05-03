@@ -17,9 +17,7 @@ public class ScreenMainMenu extends GuiScreen {
     public void drawScreen(float delta) {
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
-        batch.begin();
-        batch.draw(defaultBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        batch.end();
+        drawDefaultBackground();
     }
 
     @Override
