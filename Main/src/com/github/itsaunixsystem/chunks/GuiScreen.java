@@ -32,6 +32,8 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
 
     @Override
     public void render(float delta) {
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         drawScreen(delta);
         for(GuiElement element : elements)
         {
