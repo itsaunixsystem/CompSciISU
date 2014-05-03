@@ -101,6 +101,4 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
             element.dispose();
         }
     }
-
-    //public abstract boolean mouseMoved(int screenX, int screenY, int button);
 }
