@@ -14,4 +14,9 @@ public class ChunksGame extends Game {
     }
 
     public static ChunksGame game;
+
+    public void setScreenAndInputProcessor(GuiScreen screen) {
+        setScreen(screen);
+        Gdx.input.setInputProcessor(screen);
+    }
 }
