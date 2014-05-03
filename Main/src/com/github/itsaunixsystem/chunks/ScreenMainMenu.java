@@ -1,6 +1,5 @@
 package com.github.itsaunixsystem.chunks;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,7 +11,7 @@ public class ScreenMainMenu extends GuiScreen {
     protected SpriteBatch batch;
     protected Texture background;
 
-    public ScreenMainMenu(Game game) {
+    public ScreenMainMenu(ChunksGame game) {
         super(game);
         System.out.println("New main menu!");
         batch = new SpriteBatch();

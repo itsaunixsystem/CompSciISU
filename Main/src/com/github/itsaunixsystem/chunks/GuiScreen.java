@@ -1,6 +1,5 @@
 package com.github.itsaunixsystem.chunks;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 import java.util.ArrayList;
@@ -8,7 +7,7 @@ import java.util.ArrayList;
 public abstract class GuiScreen extends Screen implements com.badlogic.gdx.InputProcessor {
     private ArrayList<GuiElement> elements;
 
-    public GuiScreen(Game game) {
+    public GuiScreen(ChunksGame game) {
         super(game);
         elements = new ArrayList<>();
         cachedHeight = Gdx.graphics.getHeight();

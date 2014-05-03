@@ -1,12 +1,11 @@
 package com.github.itsaunixsystem.chunks;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 
 public abstract class Screen implements com.badlogic.gdx.Screen {
-    protected Game game;
+    protected ChunksGame game;
 
-    public Screen(Game game)
+    public Screen(ChunksGame game)
     {
         Gdx.graphics.getGL20().glClearColor(0f, 0f, 0f, 1f);
         this.game = game;
