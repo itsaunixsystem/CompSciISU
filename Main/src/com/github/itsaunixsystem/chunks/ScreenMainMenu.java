@@ -23,7 +23,7 @@ public class ScreenMainMenu extends GuiScreen {
         addElement(new GuiButton("Start Game",
                 new Rectangle2D.Float(100, 30, 200, 48),
                 ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
-                () -> System.out.println("Starting game!"),
+                () -> game.setScreenAndInputProcessor(new ScreenLoading(game)),
                 ButtonStyle.GRADIENT));
 
         addElement(new GuiButton("Options",
