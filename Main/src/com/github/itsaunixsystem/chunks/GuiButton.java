@@ -9,6 +9,7 @@ import java.awt.geom.Rectangle2D;
 public class GuiButton extends GuiBase implements GuiClickable {
     protected boolean pointerHovering[];
     protected GuiClickable onClick;
+    protected float animatedVal;
     protected String text;
 
     public GuiButton(String text, Rectangle2D.Float outline, GuiClickable onClick) {
@@ -20,6 +21,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
         this.onClick = onClick;
         pointerHovering = new boolean[20]; //Max 20 fingers or game breaks
         this.text = text;
+        this.animatedVal = 0f;
     }
 
     @Override
@@ -27,25 +29,27 @@ public class GuiButton extends GuiBase implements GuiClickable {
         ShapeRenderer shapeRenderer = this.renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
-        if(hovering()) {
-            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.8f);
-            shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
+        shapeRenderer.setColor(0.4f, 0.4f, 0.4f, 0.6f);
+        shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
 
-            if(Gdx.input.isButtonPressed(0) ||
+        float animatedMod = animatedVal * 0.15f;
+        shapeRenderer.setColor(0.6f + animatedMod, 0.6f + animatedMod, 0.6f + animatedMod, 0.7f);
+        float incAmt = delta * 4;
+
+        if(hovering()) {
+            if(animatedVal < 1) {
+                animatedVal += incAmt;
+            }
+            if (Gdx.input.isButtonPressed(0) ||
                     Gdx.app.getType() == Application.ApplicationType.Android ||
                     Gdx.app.getType() == Application.ApplicationType.iOS) {
                 shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
-            } else {
-                shapeRenderer.setColor(0.8f, 0.8f, 0.8f, 0.7f);
             }
-
-            shapeRenderer.rect(getX() + 2, getY() + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
-        } else {
-            shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.8f);
-            shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
-            shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.7f);
-            shapeRenderer.rect(getX() + 2, getY() + 2, (float) outline.getWidth() - 4, (float) outline.getHeight() - 4);
         }
+        else if(animatedVal > 0) {
+            animatedVal -= incAmt;
+        }
+        shapeRenderer.rect(getX() + 3, getY() + 3, (float) outline.getWidth() - 6, (float) outline.getHeight() - 6);
         shapeRenderer.end();
 
         drawText(text,
