@@ -34,7 +34,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
 
         float animatedMod = animatedVal * 0.15f;
         shapeRenderer.setColor(0.6f + animatedMod, 0.6f + animatedMod, 0.6f + animatedMod, 0.7f);
-        float incAmt = delta * 4;
+        float incAmt = delta * 8;
 
         if(hovering()) {
             if(animatedVal < 1) {
