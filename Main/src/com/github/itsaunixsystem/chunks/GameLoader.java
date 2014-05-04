@@ -42,7 +42,7 @@ public class GameLoader {
         WORLD("Loading world...", (stage) -> {
             System.out.println("Running...");
             for(int i = 0;i < 100; i++) {
-                stage.gameRenderer.updateProgress(i);
+                stage.gameLoader.updateProgress(i);
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -55,7 +55,7 @@ public class GameLoader {
 
         private Consumer<LoadStage> consumer;
         private String text;
-        private GameLoader gameRenderer;
+        private GameLoader gameLoader;
 
         private LoadStage(String text, Consumer<LoadStage> consumer) {
             this.consumer = consumer;
@@ -63,9 +63,10 @@ public class GameLoader {
         }
 
         public void start(GameLoader gameLoader) {
-            this.gameRenderer = gameLoader;
+            this.gameLoader = gameLoader;
             gameLoader.updateText.accept(text);
             new Thread(() -> this.consumer.accept(this)).start();
+
         }
     }
 }
