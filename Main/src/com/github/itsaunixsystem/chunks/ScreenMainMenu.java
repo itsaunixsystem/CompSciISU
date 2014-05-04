@@ -8,11 +8,8 @@ import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 import java.awt.geom.Rectangle2D;
 
 public class ScreenMainMenu extends GuiScreen {
-
-
     public ScreenMainMenu(ChunksGame game) {
         super(game);
-        System.out.println("New main menu!");
     }
 
     @Override
