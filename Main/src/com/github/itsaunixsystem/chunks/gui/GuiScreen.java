@@ -37,8 +37,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         GL20 gl = Gdx.graphics.getGL20();
         gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
         drawScreen(delta);
-        for(GuiElement element : elements)
-        {
+        for(GuiElement element : elements) {
             element.render(delta);
         }
     }
@@ -69,8 +68,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         screenY = flipY(screenY);
 
-        for(GuiElement element : elements)
-        {
+        for(GuiElement element : elements) {
             if(element instanceof GuiBase && element instanceof Runnable) {
                 if(((GuiBase)element).withinBounds(screenX, screenY)) {
                     ((Runnable)element).run();
