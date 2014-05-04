@@ -6,15 +6,19 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Vector;
 
 public abstract class GuiBase implements GuiElement, FontDrawer {
     protected Rectangle2D.Float outline;
     protected GuiRenderer renderer;
     protected PositionStyle posStyle;
+    protected Vector<Boolean> pointerHovering;
+
 
     public GuiBase(Rectangle2D.Float outline) {
         this.outline = outline;
         renderer = new GuiRenderer();
+        pointerHovering = new Vector<>(0, 2);
     }
 
     public GuiBase(Rectangle2D.Float outline, PositionStyle posStyle) {
@@ -72,5 +76,29 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
 
     public float getYCenter() {
         return (float) (getY() + outline.getHeight() / 2);
+    }
+
+    @Override
+    public void onHover(int pointer) {
+        setHoverState(pointer, true);
+    }
+
+    @Override
+    public void offHover(int pointer) {
+        setHoverState(pointer, false);
+    }
+
+    private void setHoverState(int pointer, boolean flag) {
+        pointerHovering.ensureCapacity(pointer + 1);
+        if(pointerHovering.size() < pointer + 1) {
+            pointerHovering.add(flag);
+        } else {
+            pointerHovering.set(pointer, flag);
+        }
+    }
+
+    protected boolean hovering() {
+        for(boolean b : pointerHovering) if(b) return true;
+        return false;
     }
 }

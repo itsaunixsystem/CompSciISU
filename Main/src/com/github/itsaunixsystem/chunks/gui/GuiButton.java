@@ -2,14 +2,10 @@ package com.github.itsaunixsystem.chunks.gui;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
-import java.util.Vector;
 
 public class GuiButton extends GuiBase implements Runnable {
-    protected Vector<Boolean> pointerHovering;
     protected Runnable onClick;
     protected float animatedVal;
     protected String text;
@@ -26,7 +22,6 @@ public class GuiButton extends GuiBase implements Runnable {
     public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick, ButtonStyle style) {
         super(outline, posStyle);
         this.onClick = onClick;
-        pointerHovering = new Vector<>(0, 2);
         this.text = text;
         this.animatedVal = 0f;
         this.buttonStyle = style;
@@ -45,8 +40,6 @@ public class GuiButton extends GuiBase implements Runnable {
         }
     }
 
-
-
     public boolean isClicked() {
         return hovering() && (Gdx.input.isButtonPressed(0) ||
                 Gdx.app.getType() == Application.ApplicationType.Android ||
@@ -61,30 +54,6 @@ public class GuiButton extends GuiBase implements Runnable {
     @Override
     public void mouseDragged(int screenX, int screenY, int pointer) {
 
-    }
-
-    @Override
-    public void onHover(int pointer) {
-        setHoverState(pointer, true);
-    }
-
-    @Override
-    public void offHover(int pointer) {
-        setHoverState(pointer, false);
-    }
-
-    private void setHoverState(int pointer, boolean flag) {
-        pointerHovering.ensureCapacity(pointer + 1);
-        if(pointerHovering.size() < pointer + 1) {
-            pointerHovering.add(flag);
-        } else {
-            pointerHovering.set(pointer, flag);
-        }
-    }
-
-    public boolean hovering() {
-        for(boolean b : pointerHovering) if(b) return true;
-        return false;
     }
 
     @Override
