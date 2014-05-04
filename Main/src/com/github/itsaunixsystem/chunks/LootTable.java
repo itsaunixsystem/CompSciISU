@@ -8,17 +8,18 @@ import java.util.Random;
 public class LootTable
 {
     public static Random rand = new Random();
+    private static final int ITEM_BASE = 3, COMMON = 0, BLUE = 2, RARE = 4;
+    private static final int SWORD = 1, BOW = 2;
+    public static int MOD_PDMG = 1, MOD_FDMG = 2, MOD_WDMG = 3, MOD_EDMG = 4, MOD_ADMG = 5;
 
-    private static int type, rarity;
-    //private static Mod[] mods;
-
-    private static final int ITEM_BASE = 3, RARITY = 3;
-
-    public static Item getItem(int implicitLevel, int mobMod)
+    public static void getItem(int implicitLevel, int mobMod)
     {
+        int type, rarity;
+        WepMod[] mods;
         type = rand.nextInt(ITEM_BASE);
-        getRarity(rand.nextInt(100), mobMod);
-        return null;
+        rarity = getRarity(rand.nextInt(100), mobMod);
+
+        mods = generateMods(rarity, implicitLevel);
 
     }
 
@@ -26,15 +27,45 @@ public class LootTable
     {
         if(i <= 60 - mod * 0.75)
         {
-                return 0;
+            return COMMON;
         }
         else if(i > 60 * 0.75 && i <= 95 - mod * 0.5)
         {
-            return 1;
+            return BLUE;
         }
         else
         {
-            return 2;
+            return RARE;
         }
     }
+
+    private static WepMod[] generateMods(int rarity, int implicitLevel)
+    {
+        WepMod[] mods = new WepMod[rarity];
+        for(int i = 0; i < rarity; i++)
+        {
+            mods[i] = WepMod.values()[rand.nextInt(WepMod.values().length)];
+        }
+        return mods;
+    }
+
+    private enum WepMod
+    {
+        PDMG_1(SWORD, MOD_PDMG, 1, 3, 1),
+        ADMG_1(SWORD, MOD_ADMG, 1, 3, 1),
+        EDMG_1(SWORD, MOD_EDMG, 1, 3, 1),
+        FDMG_1(SWORD, MOD_FDMG, 1, 3, 1),
+        WDMG_1(SWORD, MOD_WDMG, 1, 3, 1),;
+
+        private final int itemType, dmgType, dmgBot, dmgTop, impLevel;
+        private WepMod(int type, int dtype, int dB, int dT, int ilvl)
+        {
+            this.itemType = type;
+            this.dmgType = dtype;
+            this.dmgBot = dB;
+            this.dmgTop = dT;
+            this.impLevel = ilvl;
+        }
+    }
+
 }
