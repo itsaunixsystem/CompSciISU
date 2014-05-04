@@ -6,9 +6,10 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
+import java.util.Vector;
 
 public class GuiButton extends GuiBase implements GuiClickable {
-    protected boolean pointerHovering[];
+    protected Vector<Boolean> pointerHovering;
     protected GuiClickable onClick;
     protected float animatedVal;
     protected String text;
@@ -25,7 +26,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
     public GuiButton(String text, Rectangle2D.Float outline, ElementPositionStyle posStyle, GuiClickable onClick, ButtonStyle style) {
         super(outline, posStyle);
         this.onClick = onClick;
-        pointerHovering = new boolean[20]; //Max 20 fingers or game breaks
+        pointerHovering = new Vector<>(0, 2);
         this.text = text;
         this.animatedVal = 0f;
         this.buttonStyle = style;
@@ -121,12 +122,21 @@ public class GuiButton extends GuiBase implements GuiClickable {
 
     @Override
     public void onHover(int pointer) {
-        pointerHovering[pointer] = true;
+        setHoverState(pointer, true);
     }
 
     @Override
     public void offHover(int pointer) {
-        pointerHovering[pointer] = false;
+        setHoverState(pointer, false);
+    }
+
+    private void setHoverState(int pointer, boolean flag) {
+        pointerHovering.ensureCapacity(pointer + 1);
+        if(pointerHovering.size() < pointer + 1) {
+            pointerHovering.add(flag);
+        } else {
+            pointerHovering.set(pointer, flag);
+        }
     }
 
     public boolean hovering() {
