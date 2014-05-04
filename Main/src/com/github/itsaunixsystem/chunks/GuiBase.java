@@ -2,6 +2,7 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.awt.geom.Rectangle2D;
@@ -44,9 +45,14 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
 
     @Override
     public void drawText(String text, float x, float y) {
+        BitmapFont fontRenderer = renderer.getFontRenderer();
+        BitmapFont.TextBounds bounds = fontRenderer.getBounds(text);
+        x -= bounds.width / 2;
+        y += bounds.height / 2;
+
         SpriteBatch spriteBatch = renderer.getSpriteBatch();
         spriteBatch.begin();
-        renderer.getFontRenderer().draw(spriteBatch, text, x, y);
+        fontRenderer.draw(spriteBatch, text, x, y);
         spriteBatch.end();
     }
 
@@ -58,5 +64,13 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
 
     public void dispose() {
         renderer.dispose();
+    }
+
+    public float getXCenter() {
+        return (float) (getX() + outline.getWidth() / 2);
+    }
+
+    public float getYCenter() {
+        return (float) (getY() + outline.getHeight() / 2);
     }
 }

@@ -64,9 +64,9 @@ public class GuiButton extends GuiBase implements GuiClickable {
             shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6);
             shapeRenderer.end();
 
-            guiButton.drawText(guiButton.text,
-                    (float) (guiButton.getX() + guiButton.outline.getWidth() / 2 - guiButton.renderer.getFontRenderer().getSpaceWidth() * guiButton.text.length() / 2),
-                    (float) (guiButton.getY() + guiButton.outline.getHeight() / 2 + guiButton.renderer.getFontRenderer().getCapHeight() / 2));
+            guiButton.drawText(guiButton.text, guiButton.getXCenter(), guiButton.getYCenter());
+        }),
+        GRADIENT((float delta, GuiButton guiButton) -> {
         });
 
         private Drawable consumer;
