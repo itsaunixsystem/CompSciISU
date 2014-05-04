@@ -2,6 +2,7 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
@@ -33,6 +34,14 @@ public class GuiButton extends GuiBase implements GuiClickable {
     @Override
     public void draw(float delta) {
         buttonStyle.draw(delta, this);
+        float animatedInc = delta * 8;
+        if(hovering()) {
+            if(animatedVal < 1) {
+                animatedVal += animatedInc;
+            }
+        } else if(animatedVal > 0) {
+            animatedVal -= animatedInc;
+        }
     }
 
     @SuppressWarnings(value = "unused")
@@ -46,27 +55,38 @@ public class GuiButton extends GuiBase implements GuiClickable {
 
             float animatedMod = guiButton.animatedVal * 0.15f;
             shapeRenderer.setColor(0.6f + animatedMod, 0.6f + animatedMod, 0.6f + animatedMod, 0.7f);
-            float incAmt = delta * 8;
 
-            if(guiButton.hovering()) {
-                if(guiButton.animatedVal < 1) {
-                    guiButton.animatedVal += incAmt;
-                }
-                if (Gdx.input.isButtonPressed(0) ||
-                        Gdx.app.getType() == Application.ApplicationType.Android ||
-                        Gdx.app.getType() == Application.ApplicationType.iOS) {
-                    shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
-                }
-            }
-            else if(guiButton.animatedVal > 0) {
-                guiButton.animatedVal -= incAmt;
-            }
+            if(guiButton.isClicked())
+                shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
+
             shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6);
             shapeRenderer.end();
 
             guiButton.drawText(guiButton.text, guiButton.getXCenter(), guiButton.getYCenter());
         }),
         GRADIENT((float delta, GuiButton guiButton) -> {
+            ShapeRenderer shapeRenderer = guiButton.renderer.getShapeRenderer();
+            shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+
+            shapeRenderer.setColor(0.4f, 0.4f, 0.4f, 0.6f);
+            shapeRenderer.rect(guiButton.getX(), guiButton.getY(), (float) guiButton.outline.getWidth(), (float) guiButton.outline.getHeight());
+
+            shapeRenderer.setColor(0.2f, 0.2f, 0.2f, 0.9f);
+            shapeRenderer.rect(guiButton.getX(), guiButton.getY(), 3, (float) guiButton.outline.getHeight());
+            shapeRenderer.rect(guiButton.getX(), guiButton.getY(), (float) guiButton.outline.getWidth(), 3);
+            shapeRenderer.rect((float) (guiButton.getX() + guiButton.outline.getWidth() - 3), guiButton.getY(), 3, (float) guiButton.outline.getHeight());
+            shapeRenderer.rect(guiButton.getX(), (float) (guiButton.getY() + guiButton.outline.getHeight() - 3), (float) guiButton.outline.getWidth(), 3);
+
+            Color solid = guiButton.isClicked() ? new Color(0.4f, 0.4f, 1.0f, 0.5f * guiButton.animatedVal)
+                    : new Color(1.0f, 1.0f, 1.0f, 0.5f * guiButton.animatedVal);
+            Color clear = new Color(1.0f, 1.0f, 1.0f, 0.0f);
+            shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6,
+                    solid,
+                    clear,
+                    clear,
+                    solid);
+            shapeRenderer.end();
+            guiButton.drawText(guiButton.text, guiButton.getXCenter(), guiButton.getYCenter());
         });
 
         private Drawable consumer;
@@ -83,6 +103,11 @@ public class GuiButton extends GuiBase implements GuiClickable {
         }
     }
 
+    public boolean isClicked() {
+        return hovering() && (Gdx.input.isButtonPressed(0) ||
+                Gdx.app.getType() == Application.ApplicationType.Android ||
+                Gdx.app.getType() == Application.ApplicationType.iOS);
+    }
 
     @Override
     public void mouseDown(int screenX, int screenY, int pointer) {

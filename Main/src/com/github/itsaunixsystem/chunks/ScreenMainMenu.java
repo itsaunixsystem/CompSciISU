@@ -17,8 +17,8 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void init() {
-        addElement(new GuiButton("Prints \"Clicked 1!\"", new Rectangle2D.Float(0, 75, 400, 48), ElementPositionStyle.VH_CENTER, () -> System.out.println("Clicked 1!")));
-        addElement(new GuiButton("Prints \"Clicked 2!\"", new Rectangle2D.Float(0, 0, 400, 48), ElementPositionStyle.VH_CENTER, () -> System.out.println("Clicked 2!")));
+        addElement(new GuiButton("Prints \"Clicked 1!\"", new Rectangle2D.Float(110, 40, 200, 48), ElementPositionStyle.V_CENTER, () -> System.out.println("Clicked 1!"), GuiButton.ButtonStyle.GRADIENT));
+        addElement(new GuiButton("Prints \"Clicked 2!\"", new Rectangle2D.Float(0, -40, 400, 48), ElementPositionStyle.VH_CENTER, () -> System.out.println("Clicked 2!")));
     }
 
     @Override
