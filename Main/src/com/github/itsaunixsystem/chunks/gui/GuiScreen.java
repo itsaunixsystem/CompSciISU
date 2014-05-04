@@ -71,9 +71,9 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
 
         for(GuiElement element : elements)
         {
-            if(element instanceof GuiBase && element instanceof GuiClickable) {
+            if(element instanceof GuiBase && element instanceof Runnable) {
                 if(((GuiBase)element).withinBounds(screenX, screenY)) {
-                    ((GuiClickable)element).click();
+                    ((Runnable)element).run();
                 }
             }
         }

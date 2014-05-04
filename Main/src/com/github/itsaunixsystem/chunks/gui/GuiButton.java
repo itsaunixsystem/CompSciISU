@@ -8,22 +8,22 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import java.awt.geom.Rectangle2D;
 import java.util.Vector;
 
-public class GuiButton extends GuiBase implements GuiClickable {
+public class GuiButton extends GuiBase implements Runnable {
     protected Vector<Boolean> pointerHovering;
-    protected GuiClickable onClick;
+    protected Runnable onClick;
     protected float animatedVal;
     protected String text;
     protected ButtonStyle buttonStyle;
 
-    public GuiButton(String text, Rectangle2D.Float outline, GuiClickable onClick) {
+    public GuiButton(String text, Rectangle2D.Float outline, Runnable onClick) {
         this(text, outline, ElementPositionStyle.FIXED, onClick);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, GuiClickable onClick) {
+    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick) {
         this(text, outline, posStyle, onClick, ButtonStyle.NORMAL);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, GuiClickable onClick, ButtonStyle style) {
+    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick, ButtonStyle style) {
         super(outline, posStyle);
         this.onClick = onClick;
         pointerHovering = new Vector<>(0, 2);
@@ -145,7 +145,7 @@ public class GuiButton extends GuiBase implements GuiClickable {
     }
 
     @Override
-    public void click() {
-        onClick.click();
+    public void run() {
+        onClick.run();
     }
 }
