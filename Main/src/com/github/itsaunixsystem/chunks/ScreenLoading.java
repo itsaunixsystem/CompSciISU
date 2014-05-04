@@ -20,14 +20,14 @@ public class ScreenLoading extends GuiScreen {
     @Override
     public void drawScreen(float delta) {
         drawDefaultBackground();
-        progressBar.addProgress(delta * 10);
+        gameRenderer.render(delta);
     }
 
     @Override
     public void init() {
         addElement(new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
         addElement(progressBar = new GuiProgressBar(new Rectangle2D.Float(0, -50, 200, 20), ElementPositionStyle.VH_CENTER));
-        gameRenderer = new GameRenderer();
+        gameRenderer = new GameRenderer((double progress) -> progressBar.addProgress((float) progress));
     }
 
     @Override
