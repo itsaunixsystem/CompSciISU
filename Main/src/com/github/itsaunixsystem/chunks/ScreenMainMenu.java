@@ -1,5 +1,9 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
+import com.github.itsaunixsystem.chunks.gui.GuiButton;
+import com.github.itsaunixsystem.chunks.gui.GuiScreen;
+
 import java.awt.geom.Rectangle2D;
 
 public class ScreenMainMenu extends GuiScreen {

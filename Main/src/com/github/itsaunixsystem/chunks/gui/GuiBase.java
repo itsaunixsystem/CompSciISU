@@ -1,4 +1,4 @@
-package com.github.itsaunixsystem.chunks;
+package com.github.itsaunixsystem.chunks.gui;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;

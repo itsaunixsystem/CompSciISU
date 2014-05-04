@@ -1,4 +1,4 @@
-package com.github.itsaunixsystem.chunks;
+package com.github.itsaunixsystem.chunks.gui;
 
 public interface PositionStyle {
     public int getXOffset(int screenWidth);

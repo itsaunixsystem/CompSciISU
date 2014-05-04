@@ -2,6 +2,7 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 public class ChunksGame extends Game {
     @Override
