@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 public abstract class GuiScreen extends Screen implements com.badlogic.gdx.InputProcessor {
     private ArrayList<GuiElement> elements;
-    protected SpriteBatch batch;
-    protected Texture defaultBackground;
+    private SpriteBatch batch;
+    private Texture defaultBackground;
 
     public GuiScreen(ChunksGame game) {
         super(game);
