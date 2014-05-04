@@ -33,6 +33,11 @@ public class GuiProgressBar extends GuiBase {
         shapeRenderer.rect(getX() + 3, getY() + 3, (outline.width - 6) * (progress / 100.0f), outline.height - 6,
                 solid, clear, clear, solid);
 
+        if(hovering()) {
+            shapeRenderer.setColor(1f, 1f, 1f, 0.05f);
+            shapeRenderer.rect(getX() + 3, getY() + 3, (outline.width - 6) * (progress / 100.0f), outline.height - 6);
+        }
+
         shapeRenderer.end();
     }
 
