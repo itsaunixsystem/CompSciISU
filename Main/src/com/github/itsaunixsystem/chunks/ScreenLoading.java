@@ -9,7 +9,8 @@ import java.awt.geom.Rectangle2D;
 
 public class ScreenLoading extends GuiScreen {
     private GameRenderer gameRenderer;
-    private GuiProgressBar  progressBar;
+    private GuiProgressBar progressBar;
+    private GuiTextBox textBox;
 
     public ScreenLoading(ChunksGame game) {
         super(game);
@@ -18,14 +19,18 @@ public class ScreenLoading extends GuiScreen {
     @Override
     public void drawScreen(float delta) {
         drawDefaultBackground();
-        gameRenderer.render(delta);
     }
 
     @Override
     public void init() {
-        addElement(new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
+        addElement(textBox = new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
         addElement(progressBar = new GuiProgressBar(new Rectangle2D.Float(0, -50, 200, 20), ElementPositionStyle.VH_CENTER));
-        gameRenderer = new GameRenderer((double progress) -> progressBar.addProgress((float) progress));
+        gameRenderer = new GameRenderer((double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
+        gameRenderer.startInit(() -> game.setScreenAndInputProcessor(new GameScreenInGame(game, gameRenderer)));
+    }
+
+    private void setText(String text) {
+        textBox.setText(text);
     }
 
     @Override

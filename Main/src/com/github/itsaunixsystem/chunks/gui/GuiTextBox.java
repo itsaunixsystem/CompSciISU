@@ -40,4 +40,8 @@ public class GuiTextBox extends GuiBase {
     public void mouseDragged(int screenX, int screenY, int pointer) {
 
     }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 }
