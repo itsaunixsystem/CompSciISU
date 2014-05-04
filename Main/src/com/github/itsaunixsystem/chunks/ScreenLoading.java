@@ -19,6 +19,7 @@ public class ScreenLoading extends GuiScreen {
     @Override
     public void drawScreen(float delta) {
         drawDefaultBackground();
+        gameLoader.frameUpdate(delta);
     }
 
     @Override
@@ -26,7 +27,7 @@ public class ScreenLoading extends GuiScreen {
         addElement(textBox = new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
         addElement(progressBar = new GuiProgressBar(new Rectangle2D.Float(0, -50, 200, 20), ElementPositionStyle.VH_CENTER));
         gameLoader = new GameLoader((double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
-        gameLoader.startInit(() -> game.setScreenAndInputProcessor(new GameScreenInGame(game, gameLoader)));
+        gameLoader.startInit(() -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)));
     }
 
     private void setText(String text) {
