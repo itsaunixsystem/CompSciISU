@@ -1,5 +1,6 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.github.itsaunixsystem.chunks.gui.ButtonStyle;
 import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
 import com.github.itsaunixsystem.chunks.gui.GuiButton;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
@@ -22,7 +23,7 @@ public class ScreenOptions extends GuiScreen {
                 new Rectangle2D.Float(0, -120, 300, 48),
                 ElementPositionStyle.VH_CENTER,
                 () -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)),
-                GuiButton.ButtonStyle.NORMAL));
+                ButtonStyle.NORMAL));
 
         for(int i = 0; i < 8; i++) {
             addElement(new GuiButton("Hypothetical button " + (i + 1),
@@ -30,7 +31,7 @@ public class ScreenOptions extends GuiScreen {
                     ElementPositionStyle.VH_CENTER,
                     () -> {
                     },
-                    GuiButton.ButtonStyle.NORMAL));
+                    ButtonStyle.NORMAL));
         }
     }
 

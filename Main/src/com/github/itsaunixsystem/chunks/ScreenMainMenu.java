@@ -1,6 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
+import com.github.itsaunixsystem.chunks.gui.ButtonStyle;
 import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
 import com.github.itsaunixsystem.chunks.gui.GuiButton;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
@@ -23,13 +24,13 @@ public class ScreenMainMenu extends GuiScreen {
                 new Rectangle2D.Float(100, 30, 200, 48),
                 ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
                 () -> System.out.println("Starting game!"),
-                GuiButton.ButtonStyle.GRADIENT));
+                ButtonStyle.GRADIENT));
 
         addElement(new GuiButton("Options",
                 new Rectangle2D.Float(100, -30, 200, 48),
                 ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
                 () -> game.setScreenAndInputProcessor(new ScreenOptions(game)),
-                GuiButton.ButtonStyle.GRADIENT));
+                ButtonStyle.GRADIENT));
 
         addElement(new GuiButton("Quit",
                 new Rectangle2D.Float( -110, 34, 200, 48),
