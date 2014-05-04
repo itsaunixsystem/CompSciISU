@@ -10,14 +10,14 @@ import java.awt.geom.Rectangle2D;
 public abstract class GuiBase implements GuiElement, FontDrawer {
     protected Rectangle2D.Float outline;
     protected GuiRenderer renderer;
-    protected ElementPositionStyle posStyle;
+    protected PositionStyle posStyle;
 
     public GuiBase(Rectangle2D.Float outline) {
         this.outline = outline;
         renderer = new GuiRenderer();
     }
 
-    public GuiBase(Rectangle2D.Float outline, ElementPositionStyle posStyle) {
+    public GuiBase(Rectangle2D.Float outline, PositionStyle posStyle) {
         this(outline);
         this.posStyle = posStyle;
     }

@@ -3,7 +3,7 @@ package com.github.itsaunixsystem.chunks;
 import java.util.function.IntUnaryOperator;
 
 @SuppressWarnings(value = "unused")
-public enum ElementPositionStyle {
+public enum ElementPositionStyle implements PositionStyle {
     FIXED(screenWidth -> 0, screenHeight -> 0),
 
     H_CENTER(screenWidth -> screenWidth / 2, screenHeight -> 0),

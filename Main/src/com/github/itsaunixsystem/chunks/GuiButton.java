@@ -19,11 +19,11 @@ public class GuiButton extends GuiBase implements GuiClickable {
         this(text, outline, ElementPositionStyle.FIXED, onClick);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, ElementPositionStyle posStyle, GuiClickable onClick) {
+    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, GuiClickable onClick) {
         this(text, outline, posStyle, onClick, ButtonStyle.NORMAL);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, ElementPositionStyle posStyle, GuiClickable onClick, ButtonStyle style) {
+    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, GuiClickable onClick, ButtonStyle style) {
         super(outline, posStyle);
         this.onClick = onClick;
         pointerHovering = new Vector<>(0, 2);
