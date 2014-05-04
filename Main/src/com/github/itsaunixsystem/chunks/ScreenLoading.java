@@ -9,12 +9,10 @@ import java.awt.geom.Rectangle2D;
 
 public class ScreenLoading extends GuiScreen {
     private GameRenderer gameRenderer;
-    private int progress;
     private GuiProgressBar  progressBar;
 
     public ScreenLoading(ChunksGame game) {
         super(game);
-        progress = 0;
     }
 
     @Override
