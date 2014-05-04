@@ -21,8 +21,17 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void init() {
-        addElement(new GuiButton("Prints \"Clicked 1!\"", new Rectangle2D.Float(110, 40, 200, 48), ElementPositionStyle.V_CENTER, () -> System.out.println("Clicked 1!"), GuiButton.ButtonStyle.GRADIENT));
-        addElement(new GuiButton("Prints \"Clicked 2!\"", new Rectangle2D.Float(0, -40, 400, 48), ElementPositionStyle.VH_CENTER, () -> System.out.println("Clicked 2!")));
+        addElement(new GuiButton("Start Game",
+                new Rectangle2D.Float(110, 30, 200, 48),
+                ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
+                () -> System.out.println("Starting game!"),
+                GuiButton.ButtonStyle.GRADIENT));
+
+        addElement(new GuiButton("Options",
+                new Rectangle2D.Float(100, -30, 200, 48),
+                ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
+                () -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)),
+                GuiButton.ButtonStyle.GRADIENT));
     }
 
     @Override

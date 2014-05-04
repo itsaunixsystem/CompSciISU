@@ -28,4 +28,26 @@ public enum ElementPositionStyle implements PositionStyle {
     public int getYOffset(int screenHeight) {
         return y.applyAsInt(screenHeight);
     }
+
+    public static PositionStyle combine(PositionStyle x, PositionStyle y) {
+        return new PositionStyle() {
+            @Override
+            public int getXOffset(int screenWidth) {
+                return x.getXOffset(screenWidth);
+            }
+
+            @Override
+            public int getYOffset(int screenHeight) {
+                return y.getYOffset(screenHeight);
+            }
+        };
+    }
+
+    public static PositionStyle combine(IntUnaryOperator x, PositionStyle y) {
+        return combine(new PositionStyleImpl(x, null), y);
+    }
+
+    public static PositionStyle combine(PositionStyle x, IntUnaryOperator y) {
+        return combine(x, new PositionStyleImpl(null, y));
+    }
 }
