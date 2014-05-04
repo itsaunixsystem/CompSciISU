@@ -50,16 +50,6 @@ public class GuiProgressBar extends GuiBase {
 
     }
 
-    @Override
-    public void onHover(int pointer) {
-
-    }
-
-    @Override
-    public void offHover(int pointer) {
-
-    }
-
     public void addProgress(float progress) {
         this.progress += progress;
     }

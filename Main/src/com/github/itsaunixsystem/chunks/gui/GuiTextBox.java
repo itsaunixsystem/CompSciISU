@@ -40,14 +40,4 @@ public class GuiTextBox extends GuiBase {
     public void mouseDragged(int screenX, int screenY, int pointer) {
 
     }
-
-    @Override
-    public void onHover(int pointer) {
-
-    }
-
-    @Override
-    public void offHover(int pointer) {
-
-    }
 }
