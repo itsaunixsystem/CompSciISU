@@ -3,20 +3,20 @@ package com.github.itsaunixsystem.chunks;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 public abstract class GameScreen extends GuiScreen {
-    protected GameRenderer gameRenderer;
+    protected GameLoader gameLoader;
 
     public GameScreen(ChunksGame game) {
         super(game);
         game.setScreenAndInputProcessor(new ScreenLoading(game));
     }
 
-    public GameScreen(ChunksGame game, GameRenderer gameRenderer) {
+    public GameScreen(ChunksGame game, GameLoader gameLoader) {
         super(game);
-        this.gameRenderer = gameRenderer;
+        this.gameLoader = gameLoader;
     }
 
     @Override
     public void drawScreen(float delta) {
-//        gameRenderer.render(delta);
+//        gameLoader.render(delta);
     }
 }

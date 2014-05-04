@@ -3,14 +3,14 @@ package com.github.itsaunixsystem.chunks;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
-public class GameRenderer {
+public class GameLoader {
     private DoubleConsumer progress;
     private Consumer<String> updateText;
     private Runnable finished;
     private final float spread = 1f / LoadStage.values().length;
     private int index = 0;
 
-    public GameRenderer(DoubleConsumer progress, Consumer<String> updateText) {
+    public GameLoader(DoubleConsumer progress, Consumer<String> updateText) {
         this.progress = progress;
         this.updateText = updateText;
         loadNextStage();
@@ -55,16 +55,16 @@ public class GameRenderer {
 
         private Consumer<LoadStage> consumer;
         private String text;
-        private GameRenderer gameRenderer;
+        private GameLoader gameRenderer;
 
         private LoadStage(String text, Consumer<LoadStage> consumer) {
             this.consumer = consumer;
             this.text = text;
         }
 
-        public void start(GameRenderer gameRenderer) {
-            this.gameRenderer = gameRenderer;
-            gameRenderer.updateText.accept(text);
+        public void start(GameLoader gameLoader) {
+            this.gameRenderer = gameLoader;
+            gameLoader.updateText.accept(text);
             new Thread(() -> this.consumer.accept(this)).start();
         }
     }

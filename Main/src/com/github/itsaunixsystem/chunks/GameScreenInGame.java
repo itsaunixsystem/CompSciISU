@@ -5,8 +5,8 @@ public class GameScreenInGame extends GameScreen {
         super(game);
     }
 
-    public GameScreenInGame(ChunksGame game, GameRenderer gameRenderer) {
-        super(game, gameRenderer);
+    public GameScreenInGame(ChunksGame game, GameLoader gameLoader) {
+        super(game, gameLoader);
     }
 
     @Override
