@@ -2,6 +2,7 @@ package com.github.itsaunixsystem.chunks.gui;
 
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
+import com.github.itsaunixsystem.chunks.ChunksGame;
 
 import java.awt.geom.Rectangle2D;
 
@@ -58,6 +59,7 @@ public class GuiButton extends GuiBase implements Runnable {
 
     @Override
     public void run() {
+        ChunksGame.game.sound.playSound("click");
         onClick.run();
     }
 }

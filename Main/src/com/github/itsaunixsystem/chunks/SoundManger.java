@@ -15,6 +15,7 @@ public class SoundManger {
     public SoundManger() {
         soundHashMap = new HashMap<>();
         musicHashMap = new HashMap<>();
+        loadSound("click", Gdx.files.internal("Main/res/click.wav"));
         volume = 1f;
     }
 
@@ -38,7 +39,7 @@ public class SoundManger {
         musicHashMap.get(name).play();
     }
 
-    public void playSound(String name) throws ChunksException {
+    public void playSound(String name) {
         playSound(name, 1);
     }
 

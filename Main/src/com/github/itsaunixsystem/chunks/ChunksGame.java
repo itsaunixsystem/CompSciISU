@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 public class ChunksGame extends Game {
-    /*package-private*/ SoundManger sound;
+    /*package-private*/ public SoundManger sound;
 
     @Override
     public void create() {

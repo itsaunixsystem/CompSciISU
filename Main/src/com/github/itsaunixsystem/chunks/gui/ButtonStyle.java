@@ -36,7 +36,7 @@ public enum ButtonStyle {
         shapeRenderer.rect((float) (guiButton.getX() + guiButton.outline.getWidth() - 3), guiButton.getY(), 3, (float) guiButton.outline.getHeight());
         shapeRenderer.rect(guiButton.getX(), (float) (guiButton.getY() + guiButton.outline.getHeight() - 3), (float) guiButton.outline.getWidth(), 3);
 
-        Color solid = guiButton.isClicked() ? new Color(0.4f, 0.4f, 1.0f, 0.5f * guiButton.animatedVal)
+        Color solid = guiButton.isClicked() ? new Color(0.4f, 0.2f, 0.8f, 0.5f * guiButton.animatedVal)
                 : new Color(1.0f, 1.0f, 1.0f, 0.5f * guiButton.animatedVal);
         Color clear = new Color(1.0f, 1.0f, 1.0f, 0.0f);
         shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6,
