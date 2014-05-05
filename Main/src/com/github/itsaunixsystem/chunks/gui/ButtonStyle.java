@@ -5,47 +5,47 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 @SuppressWarnings(value = "unused")
 public enum ButtonStyle {
-    NORMAL((float delta, GuiButton guiButton) -> {
-        ShapeRenderer shapeRenderer = guiButton.renderer.getShapeRenderer();
+    NORMAL((float delta, GuiTextButton guiTextButton) -> {
+        ShapeRenderer shapeRenderer = guiTextButton.renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         shapeRenderer.setColor(0.4f, 0.4f, 0.4f, 0.6f);
-        shapeRenderer.rect(guiButton.getX(), guiButton.getY(), (float) guiButton.outline.getWidth(), (float) guiButton.outline.getHeight());
+        shapeRenderer.rect(guiTextButton.getX(), guiTextButton.getY(), (float) guiTextButton.outline.getWidth(), (float) guiTextButton.outline.getHeight());
 
-        float animatedMod = guiButton.animatedVal * 0.15f;
+        float animatedMod = guiTextButton.animatedVal * 0.15f;
         shapeRenderer.setColor(0.6f + animatedMod, 0.6f + animatedMod, 0.6f + animatedMod, 0.7f);
 
-        if(guiButton.isClicked())
+        if(guiTextButton.isClicked())
             shapeRenderer.setColor(0.2f, 0.2f, 0.4f, 0.7f);
 
-        shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6);
+        shapeRenderer.rect(guiTextButton.getX() + 3, guiTextButton.getY() + 3, (float) guiTextButton.outline.getWidth() - 6, (float) guiTextButton.outline.getHeight() - 6);
         shapeRenderer.end();
 
-        guiButton.drawText(guiButton.text, guiButton.getXCenter(), guiButton.getYCenter());
+        guiTextButton.drawText(guiTextButton.text, guiTextButton.getXCenter(), guiTextButton.getYCenter());
     }),
-    GRADIENT((float delta, GuiButton guiButton) -> {
-        ShapeRenderer shapeRenderer = guiButton.renderer.getShapeRenderer();
+    GRADIENT((float delta, GuiTextButton guiTextButton) -> {
+        ShapeRenderer shapeRenderer = guiTextButton.renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
         shapeRenderer.setColor(0.4f, 0.4f, 0.4f, 0.6f);
-        shapeRenderer.rect(guiButton.getX(), guiButton.getY(), (float) guiButton.outline.getWidth(), (float) guiButton.outline.getHeight());
+        shapeRenderer.rect(guiTextButton.getX(), guiTextButton.getY(), (float) guiTextButton.outline.getWidth(), (float) guiTextButton.outline.getHeight());
 
         shapeRenderer.setColor(0.2f, 0.2f, 0.2f, 0.9f);
-        shapeRenderer.rect(guiButton.getX(), guiButton.getY(), 3, (float) guiButton.outline.getHeight());
-        shapeRenderer.rect(guiButton.getX(), guiButton.getY(), (float) guiButton.outline.getWidth(), 3);
-        shapeRenderer.rect((float) (guiButton.getX() + guiButton.outline.getWidth() - 3), guiButton.getY(), 3, (float) guiButton.outline.getHeight());
-        shapeRenderer.rect(guiButton.getX(), (float) (guiButton.getY() + guiButton.outline.getHeight() - 3), (float) guiButton.outline.getWidth(), 3);
+        shapeRenderer.rect(guiTextButton.getX(), guiTextButton.getY(), 3, (float) guiTextButton.outline.getHeight());
+        shapeRenderer.rect(guiTextButton.getX(), guiTextButton.getY(), (float) guiTextButton.outline.getWidth(), 3);
+        shapeRenderer.rect((float) (guiTextButton.getX() + guiTextButton.outline.getWidth() - 3), guiTextButton.getY(), 3, (float) guiTextButton.outline.getHeight());
+        shapeRenderer.rect(guiTextButton.getX(), (float) (guiTextButton.getY() + guiTextButton.outline.getHeight() - 3), (float) guiTextButton.outline.getWidth(), 3);
 
-        Color solid = guiButton.isClicked() ? new Color(0.4f, 0.2f, 0.8f, 0.5f * guiButton.animatedVal)
-                : new Color(1.0f, 1.0f, 1.0f, 0.5f * guiButton.animatedVal);
+        Color solid = guiTextButton.isClicked() ? new Color(0.4f, 0.2f, 0.8f, 0.5f * guiTextButton.animatedVal)
+                : new Color(1.0f, 1.0f, 1.0f, 0.5f * guiTextButton.animatedVal);
         Color clear = new Color(1.0f, 1.0f, 1.0f, 0.0f);
-        shapeRenderer.rect(guiButton.getX() + 3, guiButton.getY() + 3, (float) guiButton.outline.getWidth() - 6, (float) guiButton.outline.getHeight() - 6,
+        shapeRenderer.rect(guiTextButton.getX() + 3, guiTextButton.getY() + 3, (float) guiTextButton.outline.getWidth() - 6, (float) guiTextButton.outline.getHeight() - 6,
                 solid,
                 clear,
                 clear,
                 solid);
         shapeRenderer.end();
-        guiButton.drawText(guiButton.text, guiButton.getXCenter(), guiButton.getYCenter());
+        guiTextButton.drawText(guiTextButton.text, guiTextButton.getXCenter(), guiTextButton.getYCenter());
     });
 
     private Drawable consumer;
@@ -53,11 +53,11 @@ public enum ButtonStyle {
         this.consumer = consumer;
     }
 
-    public void draw(float delta, GuiButton guiButton) {
-        consumer.accept(delta, guiButton);
+    public void draw(float delta, GuiTextButton guiTextButton) {
+        consumer.accept(delta, guiTextButton);
     }
 
     private interface Drawable {
-        public void accept(float delta, GuiButton guiButton);
+        public void accept(float delta, GuiTextButton guiTextButton);
     }
 }

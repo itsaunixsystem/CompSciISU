@@ -2,7 +2,7 @@ package com.github.itsaunixsystem.chunks;
 
 import com.github.itsaunixsystem.chunks.gui.ButtonStyle;
 import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
-import com.github.itsaunixsystem.chunks.gui.GuiButton;
+import com.github.itsaunixsystem.chunks.gui.GuiTextButton;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 import java.awt.geom.Rectangle2D;
@@ -19,14 +19,14 @@ public class ScreenOptions extends GuiScreen {
 
     @Override
     public void init() {
-        addElement(new GuiButton("Main Menu",
+        addElement(new GuiTextButton("Main Menu",
                 new Rectangle2D.Float(0, -120, 300, 48),
                 ElementPositionStyle.VH_CENTER,
                 () -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)),
                 ButtonStyle.NORMAL));
 
         for(int i = 0; i < 8; i++) {
-            addElement(new GuiButton("Hypothetical button " + (i + 1),
+            addElement(new GuiTextButton("Hypothetical button " + (i + 1),
                     new Rectangle2D.Float(i > 3 ? 180 : -180, 130 - (60 * (i > 3 ? i - 4 : i)), 300, 48),
                     ElementPositionStyle.VH_CENTER,
                     () -> {

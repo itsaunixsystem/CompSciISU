@@ -6,21 +6,21 @@ import com.github.itsaunixsystem.chunks.ChunksGame;
 
 import java.awt.geom.Rectangle2D;
 
-public class GuiButton extends GuiBase implements Runnable {
+public class GuiTextButton extends GuiBase implements Runnable {
     protected Runnable onClick;
     protected float animatedVal;
     protected String text;
     protected ButtonStyle buttonStyle;
 
-    public GuiButton(String text, Rectangle2D.Float outline, Runnable onClick) {
+    public GuiTextButton(String text, Rectangle2D.Float outline, Runnable onClick) {
         this(text, outline, ElementPositionStyle.FIXED, onClick);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick) {
+    public GuiTextButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick) {
         this(text, outline, posStyle, onClick, ButtonStyle.NORMAL);
     }
 
-    public GuiButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick, ButtonStyle style) {
+    public GuiTextButton(String text, Rectangle2D.Float outline, PositionStyle posStyle, Runnable onClick, ButtonStyle style) {
         super(outline, posStyle);
         this.onClick = onClick;
         this.text = text;

@@ -3,7 +3,7 @@ package com.github.itsaunixsystem.chunks;
 import com.badlogic.gdx.Gdx;
 import com.github.itsaunixsystem.chunks.gui.ButtonStyle;
 import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
-import com.github.itsaunixsystem.chunks.gui.GuiButton;
+import com.github.itsaunixsystem.chunks.gui.GuiTextButton;
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 import java.awt.geom.Rectangle2D;
@@ -20,19 +20,19 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void init() {
-        addElement(new GuiButton("Start Game",
+        addElement(new GuiTextButton("Start Game",
                 new Rectangle2D.Float(100, 30, 200, 48),
                 ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
                 () -> game.setScreenAndInputProcessor(new ScreenLoading(game)),
                 ButtonStyle.GRADIENT));
 
-        addElement(new GuiButton("Options",
+        addElement(new GuiTextButton("Options",
                 new Rectangle2D.Float(100, -30, 200, 48),
                 ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
                 () -> game.setScreenAndInputProcessor(new ScreenOptions(game)),
                 ButtonStyle.GRADIENT));
 
-        addElement(new GuiButton("Quit",
+        addElement(new GuiTextButton("Quit",
                 new Rectangle2D.Float( -110, 34, 200, 48),
                 ElementPositionStyle.RIGHT_OFFSET,
                 () -> Gdx.app.exit()));
