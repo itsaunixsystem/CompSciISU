@@ -31,12 +31,14 @@ public class SoundManger {
         soundHashMap.put(name, Gdx.audio.newSound(fileHandle));
     }
 
-    public void playMusic(String name) {
-        playMusic(name, 1);
+    public void playMusic(String name, boolean loop) {
+        playMusic(name, 1, loop);
     }
 
-    public void playMusic(String name, float volume) {
-        musicHashMap.get(name).play();
+    public void playMusic(String name, float volume, boolean loop) {
+        Music music = musicHashMap.get(name);
+        music.setLooping(loop);
+        music.play();
     }
 
     public void playSound(String name) {

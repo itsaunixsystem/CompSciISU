@@ -16,7 +16,7 @@ public class ChunksGame extends Game {
         setScreen(mainMenu);
         Gdx.input.setInputProcessor(mainMenu);
         sound.loadMusic("main", Gdx.files.internal("Main/res/main.wav"));
-        sound.playMusic("main");
+        sound.playMusic("main", true);
     }
 
     public static ChunksGame game;
