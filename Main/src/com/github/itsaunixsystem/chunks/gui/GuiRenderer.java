@@ -1,5 +1,6 @@
 package com.github.itsaunixsystem.chunks.gui;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -33,7 +34,7 @@ public class GuiRenderer {
 
     public void reset() {
         shapeRenderer = new ShapeRenderer();
-        fontRenderer = new BitmapFont();
+        fontRenderer = new BitmapFont(Gdx.files.internal("Main/res/vinyl.fnt"), Gdx.files.internal("Main/res/vinyl.png"), false);
         spriteBatch = new SpriteBatch();
     }
 }
