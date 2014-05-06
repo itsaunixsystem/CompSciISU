@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.github.itsaunixsystem.chunks.ChunksGame;
+import com.github.itsaunixsystem.chunks.Imp;
 import com.github.itsaunixsystem.chunks.Screen;
 
 import java.util.ArrayList;
@@ -12,7 +13,11 @@ import java.util.ArrayList;
 public abstract class GuiScreen extends Screen implements com.badlogic.gdx.InputProcessor {
     private ArrayList<GuiElement> elements;
     private SpriteBatch batch;
-    private Texture defaultBackground;
+    private static Imp defaultBackground;
+
+    static {
+        defaultBackground = new Imp(new Texture(Gdx.files.internal("Main/res/animatedbackground.png")), 2, 4);
+    }
 
     public GuiScreen(ChunksGame game) {
         super(game);
@@ -29,7 +34,6 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         }
 
         batch = new SpriteBatch();
-        defaultBackground = new Texture(Gdx.files.internal("Main/res/waterfall.png"));
     }
 
     @Override
@@ -42,9 +46,9 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         }
     }
 
-    protected void drawDefaultBackground() {
+    protected void drawDefaultBackground(float delta) {
         batch.begin();
-        batch.draw(defaultBackground, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        batch.draw(defaultBackground.getFrame(delta), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
     }
 

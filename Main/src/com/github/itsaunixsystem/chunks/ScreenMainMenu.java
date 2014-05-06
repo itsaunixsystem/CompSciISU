@@ -13,7 +13,7 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void drawScreen(float delta) {
-        drawDefaultBackground();
+        drawDefaultBackground(delta);
     }
 
     @Override

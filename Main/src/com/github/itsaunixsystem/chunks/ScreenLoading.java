@@ -18,7 +18,7 @@ public class ScreenLoading extends GuiScreen {
 
     @Override
     public void drawScreen(float delta) {
-        drawDefaultBackground();
+        drawDefaultBackground(delta);
         gameLoader.frameUpdate(delta);
     }
 
