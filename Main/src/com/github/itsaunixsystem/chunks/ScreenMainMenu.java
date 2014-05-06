@@ -1,10 +1,8 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
-import com.github.itsaunixsystem.chunks.gui.ButtonStyle;
-import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
-import com.github.itsaunixsystem.chunks.gui.GuiTextButton;
-import com.github.itsaunixsystem.chunks.gui.GuiScreen;
+import com.badlogic.gdx.graphics.Texture;
+import com.github.itsaunixsystem.chunks.gui.*;
 
 import java.awt.geom.Rectangle2D;
 
@@ -20,22 +18,24 @@ public class ScreenMainMenu extends GuiScreen {
 
     @Override
     public void init() {
+
         addElement(new GuiTextButton("Start Game",
-                new Rectangle2D.Float(100, 30, 200, 48),
-                ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
+                new Rectangle2D.Float(0, -100, 200, 48),
+                ElementPositionStyle.VH_CENTER,
                 () -> game.setScreenAndInputProcessor(new ScreenLoading(game)),
-                ButtonStyle.GRADIENT));
+                ButtonStyle.NORMAL));
 
-        addElement(new GuiTextButton("Options",
-                new Rectangle2D.Float(100, -30, 200, 48),
-                ElementPositionStyle.combine((in) -> in / 50, ElementPositionStyle.V_CENTER),
-                () -> game.setScreenAndInputProcessor(new ScreenOptions(game)),
-                ButtonStyle.GRADIENT));
+        addElement(new GuiIconButton(new Texture("Main/res/cog.png"),
+                new Rectangle2D.Float(-60, -60, 50, 50),
+                ElementPositionStyle.TOP_RIGHT_OFFSET,
+                () -> game.setScreenAndInputProcessor(new ScreenOptions(game))
+        ));
 
-        addElement(new GuiTextButton("Quit",
-                new Rectangle2D.Float( -110, 34, 200, 48),
-                ElementPositionStyle.RIGHT_OFFSET,
-                () -> Gdx.app.exit()));
+        addElement(new GuiIconButton(new Texture("Main/res/exit.png"),
+                new Rectangle2D.Float(10, -60, 50, 50),
+                ElementPositionStyle.TOP_OFFSET,
+                () -> Gdx.app.exit()
+        ));
     }
 
     @Override
