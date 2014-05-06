@@ -45,16 +45,6 @@ public class GuiProgressBar extends GuiBase {
         this.progress = progress;
     }
 
-    @Override
-    public void mouseDown(int screenX, int screenY, int pointer) {
-
-    }
-
-    @Override
-    public void mouseDragged(int screenX, int screenY, int pointer) {
-
-    }
-
     public void addProgress(float progress) {
         this.progress += progress;
     }

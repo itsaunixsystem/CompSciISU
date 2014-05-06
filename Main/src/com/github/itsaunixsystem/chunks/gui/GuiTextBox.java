@@ -31,16 +31,6 @@ public class GuiTextBox extends GuiBase {
         drawText(text, getXCenter(), getYCenter());
     }
 
-    @Override
-    public void mouseDown(int screenX, int screenY, int pointer) {
-
-    }
-
-    @Override
-    public void mouseDragged(int screenX, int screenY, int pointer) {
-
-    }
-
     public void setText(String text) {
         this.text = text;
     }

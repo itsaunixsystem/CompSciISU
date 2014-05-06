@@ -13,12 +13,13 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
     protected GuiRenderer renderer;
     protected PositionStyle posStyle;
     protected Vector<Boolean> pointerHovering;
-
+    protected float animatedVal;
 
     public GuiBase(Rectangle2D.Float outline) {
         this.outline = outline;
         renderer = new GuiRenderer();
         pointerHovering = new Vector<>(0, 2);
+        this.animatedVal = 0f;
     }
 
     public GuiBase(Rectangle2D.Float outline, PositionStyle posStyle) {
@@ -40,6 +41,14 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
 
     @Override
     public void render(float delta) {
+        float animatedInc = delta * 8;
+        if(hovering()) {
+            if(animatedVal < 1) {
+                animatedVal += animatedInc;
+            }
+        } else if(animatedVal > 0) {
+            animatedVal -= animatedInc;
+        }
         GL20 gl = Gdx.graphics.getGL20();
         gl.glEnable(GL20.GL_BLEND);
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
@@ -100,5 +109,15 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
     protected boolean hovering() {
         for(boolean b : pointerHovering) if(b) return true;
         return false;
+    }
+
+    @Override
+    public void mouseDown(int screenX, int screenY, int pointer) {
+        mouseDragged(screenX, screenY, pointer);
+    }
+
+    @Override
+    public void mouseDragged(int screenX, int screenY, int pointer) {
+
     }
 }
