@@ -20,6 +20,15 @@ public class Imp {
         size = new Vector2(width, height);
     }
 
+    public Imp(Texture texture, int width, int height) {
+        TextureRegion[][] textureRegions = TextureRegion.split(texture, texture.getWidth() / width, texture.getHeight() / height);
+        TextureRegion[] textureRegions1 = new TextureRegion[width * height];
+        for(int i = 0; i < width * height; i++) {
+            textureRegions1[i] = textureRegions[i / width % height][i % width];
+        }
+        animation = new Animation(0.1f, textureRegions1);
+    }
+
     public TextureRegion getFrame(float delta) {
         stateTime += delta;
         return animation.getKeyFrame(stateTime, true);
