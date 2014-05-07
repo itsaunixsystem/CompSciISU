@@ -20,8 +20,6 @@ public enum ButtonStyle {
 
         shapeRenderer.rect(guiTextButton.getX() + 3, guiTextButton.getY() + 3, (float) guiTextButton.outline.getWidth() - 6, (float) guiTextButton.outline.getHeight() - 6);
         shapeRenderer.end();
-
-        guiTextButton.drawText(guiTextButton.text, guiTextButton.getXCenter(), guiTextButton.getYCenter());
     }),
     GRADIENT((float delta, GuiTextButton guiTextButton) -> {
         ShapeRenderer shapeRenderer = guiTextButton.renderer.getShapeRenderer();
@@ -45,7 +43,6 @@ public enum ButtonStyle {
                 clear,
                 solid);
         shapeRenderer.end();
-        guiTextButton.drawText(guiTextButton.text, guiTextButton.getXCenter(), guiTextButton.getYCenter());
     });
 
     private Drawable consumer;

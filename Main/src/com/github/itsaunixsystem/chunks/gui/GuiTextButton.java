@@ -29,6 +29,7 @@ public class GuiTextButton extends GuiBase implements Runnable {
     @Override
     public void draw(float delta) {
         buttonStyle.draw(delta, this);
+        drawText(text, getXCenter(), getYCenter());
     }
 
     public boolean isClicked() {
