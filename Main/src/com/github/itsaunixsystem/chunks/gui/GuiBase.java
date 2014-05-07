@@ -65,7 +65,7 @@ public abstract class GuiBase implements GuiElement, FontDrawer {
 
         SpriteBatch spriteBatch = renderer.getSpriteBatch();
         spriteBatch.begin();
-        fontRenderer.draw(spriteBatch, text, x, y);
+        fontRenderer.draw(spriteBatch, text, x, y + 6); //6 for font
         spriteBatch.end();
     }
 

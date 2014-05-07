@@ -1,0 +1,28 @@
+font.name=Chenier
+font.size=25
+font.bold=false
+font.italic=false
+
+pad.top=6
+pad.right=6
+pad.bottom=6
+pad.left=6
+pad.advance.x=-12
+pad.advance.y=-12
+
+glyph.native.rendering=false
+glyph.page.width=512
+glyph.page.height=128
+glyph.text=A BCDEFGHIJKLMNOPQRSTUVWXYZ\nabcdefghijklmnopqrstuvwxyz\n1234567890\n"!`?'.,;:()[]{}<>|/@\^$-%+=#_&~*\nStart Game
+
+effect.class=com.badlogic.gdx.tools.hiero.unicodefont.effects.ShadowEffect
+effect.Color=000000
+effect.Opacity=1.0
+effect.X distance=-3.0
+effect.Y distance=-3.0
+effect.Blur kernel size=4
+effect.Blur passes=6
+
+effect.class=com.badlogic.gdx.tools.hiero.unicodefont.effects.ColorEffect
+effect.Color=ffffff
+

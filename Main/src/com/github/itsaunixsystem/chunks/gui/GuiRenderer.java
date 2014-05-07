@@ -34,7 +34,7 @@ public class GuiRenderer {
 
     public void reset() {
         shapeRenderer = new ShapeRenderer();
-        fontRenderer = new BitmapFont(Gdx.files.internal("Main/res/vinyl.fnt"), Gdx.files.internal("Main/res/vinyl.png"), false);
+        fontRenderer = new BitmapFont(Gdx.files.internal("Main/res/chenier.fnt"), Gdx.files.internal("Main/res/chenier.png"), false);
         spriteBatch = new SpriteBatch();
     }
 }
