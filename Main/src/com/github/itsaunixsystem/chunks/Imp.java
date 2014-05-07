@@ -37,4 +37,13 @@ public class Imp {
     public void resetStateTime() {
         stateTime = 0;
     }
+
+    public float getWidth() {
+        return getFrame(0).getRegionWidth();
+    }
+
+
+    public float getHeight() {
+        return getFrame(0).getRegionHeight();
+    }
 }
