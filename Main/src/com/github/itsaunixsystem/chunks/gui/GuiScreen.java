@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.github.itsaunixsystem.chunks.ChunksGame;
 import com.github.itsaunixsystem.chunks.Imp;
 import com.github.itsaunixsystem.chunks.Screen;
@@ -14,6 +15,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     private ArrayList<GuiElement> elements;
     private GuiRenderer guiRenderer;
     private static Imp defaultBackground;
+    protected static boolean upBrightness;
 
     static {
         defaultBackground = new Imp(new Texture(Gdx.files.internal("Main/res/animatedbackground.png")), 2, 4);
@@ -43,6 +45,19 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         drawScreen(delta);
         for(GuiElement element : elements) {
             element.render(delta);
+        }
+        if(upBrightness)
+        {
+            gl.glEnable(GL20.GL_BLEND);
+            gl.glBlendFunc(GL20.GL_SRC_ALPHA,GL20.GL_ONE_MINUS_SRC_ALPHA);
+
+            ShapeRenderer upShape = guiRenderer.getShapeRenderer();
+            upShape.begin(ShapeRenderer.ShapeType.Filled);
+            upShape.setColor(1f,1f,1f,0.2f);
+            upShape.rect(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
+            upShape.end();
+
+            gl.glDisable(GL20.GL_BLEND);
         }
     }
 
