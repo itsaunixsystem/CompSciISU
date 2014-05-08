@@ -9,6 +9,7 @@ public class DesktopStarter {
         cfg.width = 1120;
         cfg.height = 544;
         cfg.useGL30 = false;
+        cfg.resizable = false;
         new LwjglApplication(new ChunksGame(), cfg);
     }
 }

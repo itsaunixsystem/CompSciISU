@@ -19,7 +19,7 @@ public class ScreenMainMenu extends GuiScreen {
     @Override
     public void init() {
 
-        addElement(new GuiTextButton("Start Game",
+        addElement(new GuiTextButtonTextured("Start Game",
                 new Rectangle2D.Float(0, -100, 200, 48),
                 ElementPositionStyle.VH_CENTER,
                 () -> game.setScreenAndInputProcessor(new ScreenLoading(game)),
