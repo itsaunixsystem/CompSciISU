@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public abstract class GuiScreen extends Screen implements com.badlogic.gdx.InputProcessor {
     private ArrayList<GuiElement> elements;
-    private SpriteBatch batch;
+    private GuiRenderer guiRenderer;
     private static Imp defaultBackground;
 
     static {
@@ -33,7 +33,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
             default:
         }
 
-        batch = new SpriteBatch();
+        guiRenderer = new GuiRenderer();
     }
 
     @Override
@@ -47,6 +47,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     }
 
     protected void drawDefaultBackground(float delta) {
+        SpriteBatch batch = guiRenderer.getSpriteBatch();
         batch.begin();
         batch.draw(defaultBackground.getFrame(delta), 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
@@ -112,7 +113,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     {
         elements.stream().filter(element -> element instanceof GuiBase).forEach(element -> ((GuiBase) element).refreshRenderer());
         cachedHeight = height;
-        batch = new SpriteBatch();
+        guiRenderer.reset();
     }
 
     @Override
