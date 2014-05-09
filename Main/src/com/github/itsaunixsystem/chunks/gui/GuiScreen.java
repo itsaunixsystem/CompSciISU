@@ -53,7 +53,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
 
             ShapeRenderer upShape = guiRenderer.getShapeRenderer();
             upShape.begin(ShapeRenderer.ShapeType.Filled);
-            upShape.setColor(1f,1f,1f,0.2f);
+            upShape.setColor(1f,1f,1f,0.075f);
             upShape.rect(0,0,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
             upShape.end();
 

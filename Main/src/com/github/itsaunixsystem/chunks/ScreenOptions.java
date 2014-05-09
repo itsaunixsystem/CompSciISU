@@ -28,7 +28,7 @@ public class ScreenOptions extends GuiScreen {
         addElement(new GuiTextButton("Up Brightness",
                 new Rectangle2D.Float(-180, 130, 300,48),
                 ElementPositionStyle.VH_CENTER,
-                () -> upBrightness = true,
+                () -> upBrightness = !upBrightness,
                 ButtonStyle.NORMAL));
 
         for(int i = 1; i < 8; i++) {
