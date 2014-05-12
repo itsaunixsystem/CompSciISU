@@ -68,8 +68,7 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         batch.end();
     }
 
-    protected void addElement(GuiElement element)
-    {
+    protected void addElement(GuiElement element) {
         elements.add(element);
     }
 
