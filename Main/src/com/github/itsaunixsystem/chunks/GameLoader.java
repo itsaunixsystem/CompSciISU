@@ -10,11 +10,15 @@ public class GameLoader {
     private final float spread = 1f / LoadStage.values().length;
     private int index = 0;
     private boolean loadNext;
+    private GameRenderer gameRenderer;
+    private ChunksGame game;
 
-    public GameLoader(DoubleConsumer progress, Consumer<String> updateText) {
+    public GameLoader(ChunksGame game, DoubleConsumer progress, Consumer<String> updateText) {
         this.progress = progress;
         this.updateText = updateText;
         loadNext = true;
+        gameRenderer = new GameRenderer();
+        this.game = game;
     }
 
     public void frameUpdate(float delta) {
@@ -27,11 +31,7 @@ public class GameLoader {
     }
 
     public void endInit() {
-        finished.run();
-    }
-
-    public void startInit(Runnable finished) {
-        this.finished = finished;
+        game.setScreenAndInputProcessor(new ScreenMainMenu(game));
     }
 
     private void loadNextStage() {

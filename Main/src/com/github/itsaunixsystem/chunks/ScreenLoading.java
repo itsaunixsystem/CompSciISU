@@ -26,8 +26,7 @@ public class ScreenLoading extends GuiScreen {
     public void init() {
         addElement(textBox = new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
         addElement(progressBar = new GuiProgressBar(new Rectangle2D.Float(0, -50, 200, 20), ElementPositionStyle.VH_CENTER));
-        gameLoader = new GameLoader((double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
-        gameLoader.startInit(() -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)));
+        gameLoader = new GameLoader(game, (double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
     }
 
     private void setText(String text) {
