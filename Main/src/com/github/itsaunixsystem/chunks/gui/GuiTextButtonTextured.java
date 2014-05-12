@@ -31,13 +31,11 @@ public class GuiTextButtonTextured extends GuiTextButton {
 
     @Override
     public void draw(float delta) {
+        float x = getX();
+        float y = getY() - (isClicked() ? 1 : 0);
         SpriteBatch batch = this.renderer.getSpriteBatch();
         batch.begin();
-        if(isClicked()) {
-            batch.draw(texture.getFrame(delta), getX(), getY() - 1);
-        } else {
-            batch.draw(texture.getFrame(delta), getX(), getY());
-        }
+        batch.draw(texture.getFrame(delta), x, y);
         batch.end();
 
         GL20 gl = Gdx.graphics.getGL20();
@@ -45,8 +43,8 @@ public class GuiTextButtonTextured extends GuiTextButton {
         gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         ShapeRenderer shapeRenderer = renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0.6f, 0.6f, 0.6f, 0.1f + animatedVal * 0.2f);
-        shapeRenderer.rect(getX() + 3, getY() + 3, (float) (outline.getWidth() - 6), (float) (outline.getHeight() - 6));
+        shapeRenderer.setColor(0.6f, 0.6f, 0.6f, animatedVal * 0.2f);
+        shapeRenderer.rect(x, y, (float)(outline.getWidth()), (float)(outline.getHeight()));
         shapeRenderer.end();
         gl.glDisable(GL20.GL_BLEND);
         drawText(text, getXCenter(), getYCenter() - (isClicked() ? 1 : 0));
