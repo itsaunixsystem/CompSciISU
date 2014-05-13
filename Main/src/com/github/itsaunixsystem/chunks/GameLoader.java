@@ -1,24 +1,26 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
-public class GameLoader {
+public class GameLoader extends GameLoaderI {
     private DoubleConsumer progress;
     private Consumer<String> updateText;
     private Runnable finished;
     private final float spread = 1f / LoadStage.values().length;
     private int index = 0;
     private boolean loadNext;
-    private GameRenderer gameRenderer;
+    private GameManager gameManager;
+    private AssetManager assetManager;
     private ChunksGame game;
 
     public GameLoader(ChunksGame game, DoubleConsumer progress, Consumer<String> updateText) {
-        this.progress = progress;
-        this.updateText = updateText;
+        super(game, progress, updateText);
         loadNext = true;
-        gameRenderer = new GameRenderer();
-        this.game = game;
+        assetManager = new AssetManager();
     }
 
     public void frameUpdate(float delta) {
@@ -31,7 +33,7 @@ public class GameLoader {
     }
 
     public void endInit() {
-        game.setScreenAndInputProcessor(new ScreenMainMenu(game));
+        game.setScreenAndInputProcessor(new GameScreenInGame(game, gameManager));
     }
 
     private void loadNextStage() {
@@ -51,14 +53,16 @@ public class GameLoader {
     @SuppressWarnings(value = "unused")
     private enum LoadStage {
         WORLD("Loading world...", (stage) -> {
-            for(int i = 0;i < 100; i++) {
-                stage.gameLoader.updateProgress(i);
-                try {
-                    Thread.sleep(20);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            GameManager gameManager = stage.gameLoader.gameManager;
+            AssetManager assetManager = stage.gameLoader.assetManager;
+            assetManager.load("Main/res/maps/maptest.tmx", TiledMap.class);
+
+//            assetManager.update()
+            gameManager.loadMap(assetManager);
+            stage.updateProgress(10);
+
+            gameManager.loadMapData(stage.gameLoader.assetManager);
+            stage.updateProgress(50);
         }),
         ENTITIES("Loading entities...", (stage) -> {
             for(int i = 0;i < 100; i++) {
@@ -93,7 +97,12 @@ public class GameLoader {
         public void start(GameLoader gameLoader) {
             this.gameLoader = gameLoader;
             gameLoader.updateText.accept(text);
-            new Thread(() -> {this.consumer.accept(this); gameLoader.scheduleStageLoad();}).start();
+            this.consumer.accept(this);
+            gameLoader.scheduleStageLoad();
+        }
+
+        private void updateProgress(float prog) {
+            gameLoader.updateProgress(prog);
         }
     }
 }

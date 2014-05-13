@@ -8,7 +8,7 @@ import com.github.itsaunixsystem.chunks.gui.GuiTextBox;
 import java.awt.geom.Rectangle2D;
 
 public class ScreenLoading extends GuiScreen {
-    private GameLoader gameLoader;
+    private GameLoaderI gameLoader;
     private GuiProgressBar progressBar;
     private GuiTextBox textBox;
 
@@ -26,7 +26,7 @@ public class ScreenLoading extends GuiScreen {
     public void init() {
         addElement(textBox = new GuiTextBox("Loading...", new Rectangle2D.Float(0, 0, 200, 48), ElementPositionStyle.VH_CENTER));
         addElement(progressBar = new GuiProgressBar(new Rectangle2D.Float(0, -50, 200, 20), ElementPositionStyle.VH_CENTER));
-        gameLoader = new GameLoader(game, (double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
+        gameLoader = new GameLoader2(game, (double progress) -> progressBar.updateProgress((float) progress), (text) -> setText(text));
     }
 
     private void setText(String text) {
