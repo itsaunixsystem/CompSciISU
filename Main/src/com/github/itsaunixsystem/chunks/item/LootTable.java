@@ -1,4 +1,4 @@
-package com.github.itsaunixsystem.chunks;
+package com.github.itsaunixsystem.chunks.item;
 
 import java.util.ArrayList;
 import java.util.Random;
