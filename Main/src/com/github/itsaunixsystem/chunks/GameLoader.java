@@ -8,14 +8,14 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
-public class GameLoader2 {
+public class GameLoader {
     private DoubleConsumer progress;
     private Consumer<String> updateText;
     private GameManager gameManager;
     private AssetManager assetManager;
     private ChunksGame game;
 
-    public GameLoader2(ChunksGame game, DoubleConsumer progress, Consumer<String> updateText) {
+    public GameLoader(ChunksGame game, DoubleConsumer progress, Consumer<String> updateText) {
         this.game = game;
         this.progress = progress;
         this.updateText = updateText;
