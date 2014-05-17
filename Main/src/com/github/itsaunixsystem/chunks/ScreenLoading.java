@@ -8,7 +8,7 @@ import com.github.itsaunixsystem.chunks.gui.GuiTextBox;
 import java.awt.geom.Rectangle2D;
 
 public class ScreenLoading extends GuiScreen {
-    private GameLoaderI gameLoader;
+    private GameLoader2 gameLoader;
     private GuiProgressBar progressBar;
     private GuiTextBox textBox;
 

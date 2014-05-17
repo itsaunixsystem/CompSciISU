@@ -1,11 +1,14 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
 import java.util.function.Consumer;
 import java.util.function.DoubleConsumer;
 
-public class GameLoader2 extends GameLoaderI {
+public class GameLoader2 {
     private DoubleConsumer progress;
     private Consumer<String> updateText;
     private GameManager gameManager;
@@ -13,26 +16,25 @@ public class GameLoader2 extends GameLoaderI {
     private ChunksGame game;
 
     public GameLoader2(ChunksGame game, DoubleConsumer progress, Consumer<String> updateText) {
-        super(game, progress, updateText);
+        this.game = game;
         this.progress = progress;
         this.updateText = updateText;
-        gameManager = new GameManager();
+        gameManager = new GameManager(game);
         assetManager = new AssetManager();
-        this.game = game;
+        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.load("Main/res/maps/maptest.tmx", TiledMap.class);
     }
 
-    @Override
     public void frameUpdate(float delta) {
-
+        assetManager.update();
+        float prog = assetManager.getProgress();
+        progress.accept(assetManager.getProgress() * 100);
+        if(prog == 1) {
+            endInit();
+        }
     }
 
-    @Override
-    public void updateProgress(float progress) {
-
-    }
-
-    @Override
     public void endInit() {
-
+        game.setScreenAndInputProcessor(new ScreenMainMenu(game));
     }
 }
