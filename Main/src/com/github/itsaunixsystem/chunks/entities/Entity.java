@@ -1,4 +1,4 @@
-package com.github.itsaunixsystem.chunks;
+package com.github.itsaunixsystem.chunks.entities;
 
 import com.badlogic.gdx.math.Vector2;
 

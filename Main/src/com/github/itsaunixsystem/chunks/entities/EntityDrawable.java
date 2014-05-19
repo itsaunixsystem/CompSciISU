@@ -1,7 +1,9 @@
-package com.github.itsaunixsystem.chunks;
+package com.github.itsaunixsystem.chunks.entities;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.github.itsaunixsystem.chunks.ChunksException;
+import com.github.itsaunixsystem.chunks.Imp;
 
 import java.util.HashMap;
 
