@@ -35,6 +35,8 @@ public class GameLoader {
     }
 
     public void endInit() {
+        gameManager.map("maptest.tmx", assetManager.get("Main/res/maps/maptest.tmx", TiledMap.class));
+        gameManager.refreshAssets();
         game.setScreenAndInputProcessor(new GameScreenInGame(game, gameManager));
     }
 }

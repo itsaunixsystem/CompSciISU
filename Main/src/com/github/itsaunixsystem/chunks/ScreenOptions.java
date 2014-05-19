@@ -25,13 +25,7 @@ public class ScreenOptions extends GuiScreen {
                 () -> game.setScreenAndInputProcessor(new ScreenMainMenu(game)),
                 ButtonStyle.NORMAL));
 
-        addElement(new GuiTextButton("Up Brightness",
-                new Rectangle2D.Float(-180, 130, 300,48),
-                ElementPositionStyle.VH_CENTER,
-                () -> upBrightness = !upBrightness,
-                ButtonStyle.NORMAL));
-
-        for(int i = 1; i < 8; i++) {
+        for(int i = 0; i < 8; i++) {
             final int x = i + 1;
             addElement(new GuiTextButton("Hypothetical button " + (i + 1),
                     new Rectangle2D.Float(i > 3 ? 180 : -180, 130 - (60 * (i > 3 ? i - 4 : i)), 300, 48),

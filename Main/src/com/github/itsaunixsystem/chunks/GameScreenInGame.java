@@ -1,6 +1,8 @@
 package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.github.itsaunixsystem.chunks.gui.ElementPositionStyle;
@@ -27,10 +29,16 @@ public class GameScreenInGame extends GameScreen {
 
     @Override
     public void drawScreen(float delta) {
+        gameManager.draw(delta);
+        GL20 gl = Gdx.graphics.getGL20();
+        gl.glEnable(GL20.GL_BLEND);
+        gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         ShapeRenderer shapeRenderer = this.getGuiRenderer().getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(0.5f, 0.5f, 0.5f, 0.3f);
-        shapeRenderer.rect(0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), -70);
+        Color dark = new Color(0.1f, 0.1f, 0.1f, 0.5f);
+        Color light = new Color(0.3f, 0.3f, 0.3f, 0.2f);
+        shapeRenderer.rect(0, Gdx.graphics.getHeight(), Gdx.graphics.getWidth(), -70, dark, dark, light, light);
         shapeRenderer.end();
+        gl.glDisable(GL20.GL_BLEND);
     }
 }
