@@ -35,6 +35,6 @@ public class GameLoader {
     }
 
     public void endInit() {
-        game.setScreenAndInputProcessor(new ScreenMainMenu(game));
+        game.setScreenAndInputProcessor(new GameScreenInGame(game, gameManager));
     }
 }

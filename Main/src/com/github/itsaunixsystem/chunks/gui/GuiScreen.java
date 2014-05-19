@@ -176,4 +176,8 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
     public void resume() {
 
     }
+
+    public GuiRenderer getGuiRenderer() {
+        return guiRenderer;
+    }
 }

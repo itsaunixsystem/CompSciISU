@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
-  <image source="tileset.png" width="128" height="32"/>
+  <image source="tileset.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="5" name="Player" tilewidth="32" tileheight="32">
+ <tileset firstgid="257" name="Player" tilewidth="32" tileheight="32">
   <image source="placeholdervals.png" width="256" height="256"/>
  </tileset>
+ <imagelayer name="back" width="100" height="20"/>
  <layer name="world" width="100" height="20">
   <data encoding="base64" compression="zlib">
-   eJztzkkKgDAQBMBs/v/LDp6GoOItEKugD+lMllIAAAAAAACAvzlWf4BLjbRIj4y0zl27mesvZ/Pel5n8ztzXhzvmbhcntogAeQ==
+   eJztjTkSwjAQBH1wpdyk3HwA0AfA+v+LmFBSyWvFpruqA49nVlUFAAAAAAAAAAAAAGNhKmdyLhdGnuuVbq0uxGzlTu7lwchzvdKt1YWYq7zJu3wYea5XurW6EPOUL/mWS7mSa7kJcpf0XGbrem4OdSHmI7+yk0d5kmd5CXKf9Hxm63tuDnX/mVo2spWT4DvMmkyvNbbhv5JO+E6a1z030mws/ADc1RJa
   </data>
  </layer>
- <layer name="player" width="100" height="20">
-  <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAYH0AAAQ==
-  </data>
- </layer>
+ <objectgroup name="data" width="100" height="20">
+  <object name="player" type="player" x="30" y="543" width="36" height="62">
+   <properties>
+    <property name="speed" value=""/>
+   </properties>
+  </object>
+  <object name="floor" x="0" y="608" width="1600" height="32"/>
+ </objectgroup>
 </map>
