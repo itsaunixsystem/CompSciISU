@@ -15,8 +15,8 @@ public class GameManager {
 
     public GameManager(ChunksGame game) {
         this.camera = new OrthographicCamera();
-        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set(Gdx.graphics.getWidth(), camera.position.y, camera.position.z);
+        camera.setToOrtho(false, Gdx.graphics.getWidth() / 2, Gdx.graphics.getHeight() / 2);
+        camera.position.set(Gdx.graphics.getWidth() / 2, camera.position.y, camera.position.z);
         this.game = game;
         values = new HashMap<>();
         types = new HashMap<>();
@@ -33,10 +33,6 @@ public class GameManager {
 
     public void draw(float delta) {
         camera.update();
-        camera.position.x -= delta * 100;
-        if(camera.position.x < Gdx.graphics.getWidth() / 2) {
-            camera.position.x = Gdx.graphics.getWidth() / 2;
-        }
         currentWorld.draw(delta);
     }
 

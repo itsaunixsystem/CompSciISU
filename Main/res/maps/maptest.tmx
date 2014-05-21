@@ -18,9 +18,6 @@
     <property name="speed" value=""/>
    </properties>
   </object>
-  <object name="floor" type="solid" x="0" y="608" width="288" height="32"/>
-  <object name="floortest" type="solid" x="288" y="608">
-   <polygon points="0,32 0,0 32,-32 544,-32 544,32"/>
-  </object>
+  <object name="floor" x="0" y="608" width="1600" height="32"/>
  </objectgroup>
 </map>
