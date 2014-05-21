@@ -2,6 +2,7 @@ package com.github.itsaunixsystem.chunks;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 
@@ -23,6 +24,7 @@ public class GameLoader {
         assetManager = new AssetManager();
         assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
         assetManager.load("Main/res/maps/maptest.tmx", TiledMap.class);
+        assetManager.load("Main/res/player.png", Texture.class);
     }
 
     public void frameUpdate(float delta) {
@@ -36,6 +38,7 @@ public class GameLoader {
 
     public void endInit() {
         gameManager.map("maptest.tmx", assetManager.get("Main/res/maps/maptest.tmx", TiledMap.class));
+        gameManager.map("player.png", assetManager.get("Main/res/player.png", Texture.class));
         gameManager.refreshAssets();
         game.setScreenAndInputProcessor(new GameScreenInGame(game, gameManager));
     }

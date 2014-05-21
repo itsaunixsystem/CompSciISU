@@ -3,21 +3,20 @@ package com.github.itsaunixsystem.chunks;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
 
 public class Imp {
     private Animation animation;
-    private Vector2 size;
     private float stateTime = 0;
+    private AxisAlignedBoundingBox boundingBox;
 
     public Imp(Texture tex) {
         animation = new Animation(1f, new TextureRegion(tex));
-        size = new Vector2(tex.getWidth(), tex.getHeight());
+        boundingBox = new AxisAlignedBoundingBox(tex.getWidth(), tex.getHeight());
     }
 
     public Imp(Animation animation, float width, float height) {
         this.animation = animation;
-        size = new Vector2(width, height);
+        boundingBox = new AxisAlignedBoundingBox(animation.getKeyFrame(0).getRegionWidth(), animation.getKeyFrame(0).getRegionHeight());
     }
 
     public Imp(Texture texture, int width, int height) {
@@ -34,16 +33,23 @@ public class Imp {
         return animation.getKeyFrame(stateTime, true);
     }
 
+    public TextureRegion getCurrentFrame() {
+        return getFrame(0); //0 adds no state time so gets image as is
+    }
+
     public void resetStateTime() {
         stateTime = 0;
     }
 
     public float getWidth() {
-        return getFrame(0).getRegionWidth();
+        return getCurrentFrame().getRegionWidth();
     }
 
+    public boolean collides(Imp other) {
+        return this.boundingBox.intersects(other.boundingBox);
+    }
 
     public float getHeight() {
-        return getFrame(0).getRegionHeight();
+        return getCurrentFrame().getRegionHeight();
     }
 }
