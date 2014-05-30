@@ -12,6 +12,7 @@ public abstract class Entity {
 
     public Entity(float x, float y)
     {
+        this(new Vector2());
         pos.set(x, y);
     }
 

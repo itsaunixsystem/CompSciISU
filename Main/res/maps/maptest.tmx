@@ -6,18 +6,13 @@
  <tileset firstgid="257" name="Player" tilewidth="32" tileheight="32">
   <image source="placeholdervals.png" width="256" height="256"/>
  </tileset>
- <imagelayer name="back" width="100" height="20"/>
  <layer name="world" width="100" height="20">
   <data encoding="base64" compression="zlib">
    eJztjTkSwjAQBH1wpdyk3HwA0AfA+v+LmFBSyWvFpruqA49nVlUFAAAAAAAAAAAAAGNhKmdyLhdGnuuVbq0uxGzlTu7lwchzvdKt1YWYq7zJu3wYea5XurW6EPOUL/mWS7mSa7kJcpf0XGbrem4OdSHmI7+yk0d5kmd5CXKf9Hxm63tuDnX/mVo2spWT4DvMmkyvNbbhv5JO+E6a1z030mws/ADc1RJa
   </data>
  </layer>
  <objectgroup name="data" width="100" height="20">
-  <object name="player" type="player" x="30" y="543" width="36" height="62">
-   <properties>
-    <property name="speed" value=""/>
-   </properties>
-  </object>
+  <object name="player" type="player" x="32" y="544" width="32" height="64"/>
   <object name="floor" type="solid" x="0" y="608" width="288" height="32"/>
   <object name="floortest" type="solid" x="288" y="608">
    <polygon points="0,32 0,0 32,-32 544,-32 544,32"/>

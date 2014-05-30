@@ -1,5 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.badlogic.gdx.math.Rectangle;
+
 public class AxisAlignedBoundingBox extends AxisAlignedPolygon {
     private float x, y, width, height;
 
@@ -20,6 +22,10 @@ public class AxisAlignedBoundingBox extends AxisAlignedPolygon {
 
     public AxisAlignedBoundingBox(float width, float height) {
         this(0, 0, width, height);
+    }
+
+    public AxisAlignedBoundingBox(Rectangle rectangle) {
+        this(rectangle.getX(), rectangle.getY(), rectangle.getWidth(), rectangle.getHeight());
     }
 
     public float getX() {

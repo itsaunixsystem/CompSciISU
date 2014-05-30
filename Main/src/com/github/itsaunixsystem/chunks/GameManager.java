@@ -3,6 +3,7 @@ package com.github.itsaunixsystem.chunks;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.github.itsaunixsystem.chunks.entities.EntityPlayer;
 
 import java.util.HashMap;
 
@@ -12,6 +13,7 @@ public class GameManager {
     protected ChunksGame game;
     private HashMap<String, Object> values;
     private HashMap<String, Class> types;
+    private EntityPlayer player;
 
     public GameManager(ChunksGame game) {
         this.camera = new OrthographicCamera();
@@ -41,10 +43,14 @@ public class GameManager {
     }
 
     public void refreshAssets() {
-        currentWorld = new World(get("maptest.tmx"), this);
+        currentWorld = MapLoader.loadMap(get("maptest.tmx"), this);
     }
 
     public Camera getCamera() {
         return camera;
+    }
+
+    public void setPlayer(EntityPlayer player) {
+        this.player = player;
     }
 }

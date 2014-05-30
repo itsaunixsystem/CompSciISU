@@ -1,5 +1,7 @@
 package com.github.itsaunixsystem.chunks;
 
+import com.badlogic.gdx.math.Polygon;
+
 public class AxisAlignedPolygon {
     private Point2D[] points;
 
@@ -12,6 +14,10 @@ public class AxisAlignedPolygon {
                 new Point2D(x + width, y),
                 new Point2D(x + width, y + height),
                 new Point2D(x, y + height));
+    }
+
+    public AxisAlignedPolygon(Polygon polygon) {
+        this.points = new Point2D[polygon.getVertices().length / 2];
     }
 
     public float maxX() {
@@ -46,6 +52,17 @@ public class AxisAlignedPolygon {
         return y;
     }
 
+    public boolean testVertex(Point2D[] verts, Point2D testPoint)
+    {
+        boolean check = false;
+        for(int i = 0, j = verts.length-1; i < verts.length; j = i++)
+        {
+            if (((verts[i].y > testPoint.x) != (verts[j].y > testPoint.y)) &&
+                    (testPoint.x < (verts[j].x - verts[i].x) * (testPoint.y - verts[i].y) / (verts[j].y - verts[i].y) + verts[i].x))
+                check = !check;
+        }
+        return check;
+    }
     //Didn't use vector for speed reasons
     public static class Point2D {
         public float x, y;

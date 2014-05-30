@@ -48,4 +48,8 @@ public class World {
             }
         }
     }
+
+    public GameManager getGameManager() {
+        return gameManager;
+    }
 }
