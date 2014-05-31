@@ -5,7 +5,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.github.itsaunixsystem.chunks.entities.Entity;
 import com.github.itsaunixsystem.chunks.entities.EntityLiving;
+import com.github.itsaunixsystem.chunks.entities.EntityPlayer;
 
 import java.util.ArrayList;
 
@@ -14,16 +16,22 @@ public class World {
     protected TiledMap map;
     protected TiledMapRenderer renderer;
     protected ArrayList<AxisAlignedPolygon> solids;
+    private EntityPlayer player;
+    private ArrayList<Entity> entities;
 
     public World(TiledMap map, GameManager gameManager) {
         this.map = map;
         this.gameManager = gameManager;
+        this.solids = new ArrayList<>();
+        this.entities = new ArrayList<>();
         renderer = new OrthogonalTiledMapRenderer(map);
     }
 
     public void draw(float delta) {
         renderer.setView((OrthographicCamera) gameManager.getCamera());
         renderer.render();
+        gameManager.getEntityRenderer().drawEntities(delta, entities.toArray());
+        gameManager.getEntityRenderer().drawEntity(delta, player);
     }
 
     public void applyGravityAndCollision(EntityLiving entityLiving, float delta) {
@@ -51,5 +59,9 @@ public class World {
 
     public GameManager getGameManager() {
         return gameManager;
+    }
+
+    public void setPlayer(EntityPlayer player) {
+        this.player = player;
     }
 }

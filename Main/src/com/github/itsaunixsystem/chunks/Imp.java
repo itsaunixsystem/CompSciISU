@@ -28,6 +28,10 @@ public class Imp {
         animation = new Animation(0.1f, textureRegions1);
     }
 
+    public Imp(TextureRegion[] frames) {
+        this.animation = new Animation(0.1f, frames);
+    }
+
     public TextureRegion getFrame(float delta) {
         stateTime += delta;
         return animation.getKeyFrame(stateTime, true);
@@ -51,5 +55,10 @@ public class Imp {
 
     public float getHeight() {
         return getCurrentFrame().getRegionHeight();
+    }
+
+    public Imp setSpeed(float speed) {
+        animation = new Animation(speed, animation.getKeyFrames());
+        return this;
     }
 }

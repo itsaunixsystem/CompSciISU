@@ -22,7 +22,7 @@ public abstract class EntityDrawable extends Entity {
     }
 
     public void draw(float delta, SpriteBatch batch) {
-        batch.draw(currentDraw.getFrame(delta).getTexture(), pos.x, pos.y);
+        batch.draw(currentDraw.getFrame(delta), pos.x, pos.y);
     }
 
     public void play(String anim) throws ChunksException {

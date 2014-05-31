@@ -7,6 +7,12 @@ import com.github.itsaunixsystem.chunks.Imp;
 import java.util.HashMap;
 
 public class EntityPlayer extends EntityLiving implements MovementProcessor {
+    private static HashMap<String, Imp> drawings;
+
+    public static void loadDrawings(HashMap<String, Imp> drawings) {
+        EntityPlayer.drawings = drawings;
+    }
+
     public EntityPlayer(Vector2 pos, HashMap<String, Imp> drawings) {
         super(pos, drawings);
     }
