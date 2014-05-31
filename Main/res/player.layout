@@ -1,0 +1,6 @@
+<layout sheet="player.png">
+	<animation name="walk">
+		<frame x="0" y="0" width="32" height="64"/>
+		<frame x="32" y="0" width="32" height="64"/>
+	</animation>
+</layout>
