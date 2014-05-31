@@ -23,7 +23,7 @@ public class GuiSlider extends GuiBase implements Runnable{
         this.onDrag = onDrag;
         this.text = text;
         sliderValue = 1.0f;
-        this.slide = new Rectangle2D.Float(getX() + (outline.width * sliderValue) - 18, getY() + 3, 15, outline.height - 6);
+        this.slide = new Rectangle2D.Float(getX() + 3, getY() + 3, 15, outline.height - 6);
     }
 
     public float getSliderValue()
@@ -33,8 +33,6 @@ public class GuiSlider extends GuiBase implements Runnable{
 
     @Override
     public void draw(float delta) {
-        //buttonStyle.draw(delta, this);
-        //drawText(text, getXCenter(), getYCenter());
         ShapeRenderer shapeRenderer = renderer.getShapeRenderer();
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
 
@@ -42,7 +40,7 @@ public class GuiSlider extends GuiBase implements Runnable{
         shapeRenderer.rect(getX(), getY(), (float) outline.getWidth(), (float) outline.getHeight());
         shapeRenderer.rect(getX() + 3, getY() + 3, (float) outline.getWidth() - 6, (float) outline.getHeight() - 6);
         shapeRenderer.setColor(0.7f, 0.7f, 0.7f, 0.6f);
-        shapeRenderer.rect(slide.x, slide.y, slide.width, slide.height);
+        shapeRenderer.rect(slide.x + (outline.width - 21) * sliderValue, slide.y, slide.width, slide.height);
         shapeRenderer.end();
 
         drawText(text, getXCenter(), getYCenter());
