@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+//class to handle both animation / static sprite
+
 public class Imp {
     private Animation animation;
     private float stateTime = 0;

@@ -1,5 +1,4 @@
 package com.github.itsaunixsystem.chunks;
-
 import com.github.itsaunixsystem.chunks.gui.GuiScreen;
 
 public abstract class GameScreen extends GuiScreen {

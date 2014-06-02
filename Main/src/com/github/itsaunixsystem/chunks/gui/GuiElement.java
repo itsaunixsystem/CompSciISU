@@ -1,6 +1,6 @@
 package com.github.itsaunixsystem.chunks.gui;
 
-public interface GuiElement {
+public interface GuiElement {   //interface that all elements will implement, called when rendered etc
     public void render(float delta);
 
     public void mouseDown(int screenX, int screenY, int pointer);

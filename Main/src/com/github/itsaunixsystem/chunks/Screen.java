@@ -1,6 +1,7 @@
 package com.github.itsaunixsystem.chunks;
-
 import com.badlogic.gdx.Gdx;
+
+//Abstract screen class, inherited from by all screens that are created for every page of game.
 
 public abstract class Screen implements com.badlogic.gdx.Screen {
     protected ChunksGame game;
@@ -11,7 +12,7 @@ public abstract class Screen implements com.badlogic.gdx.Screen {
         this.game = game;
     }
 
-    protected void showScreen(Screen screen)
+    protected void showScreen(Screen screen) //sets the screen displayed by the game as this.
     {
         game.setScreen(screen);
     }
