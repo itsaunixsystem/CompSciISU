@@ -1,5 +1,7 @@
 package com.github.itsaunixsystem.chunks.gui;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 import java.awt.geom.Rectangle2D;
@@ -22,13 +24,19 @@ public class GuiSlider extends GuiBase {
         super(outline, posStyle);
         this.onDrag = onDrag;
         this.text = text;
-        sliderValue = 1.0f;
+        sliderValue = 0f;
         this.slide = new Rectangle2D.Float(getX() + 3, getY() + 3, 15, outline.height - 6);
     }
 
     public float getSliderValue()
     {
         return sliderValue;
+    }
+
+    public boolean isClicked() {
+        return hovering() && (Gdx.input.isButtonPressed(0) ||
+                Gdx.app.getType() == Application.ApplicationType.Android ||
+                Gdx.app.getType() == Application.ApplicationType.iOS);
     }
 
     @Override
@@ -46,9 +54,14 @@ public class GuiSlider extends GuiBase {
         drawText(text, getXCenter(), getYCenter());
     }
 
+    public void mouseDown(int screenX, int screenY, int pointer) {
+        mouseDragged(screenX, screenY, pointer);
+    }
+
     public void mouseDragged(int screenX, int screenY, int pointer)
     {
-        sliderValue = ((screenX - (float)outline.getX()) / (float)outline.getWidth()) - 1.36f; //NEEDS FIXING, I DON'T UNDERSTAND YOUR LAYOUT!
+        System.out.println(screenX + " " + outline.getWidth());
+        sliderValue = (screenX - 230) / (float)outline.getWidth(); //NEEDS FIXING, I DON'T UNDERSTAND YOUR LAYOUT!
     }
 
 }
