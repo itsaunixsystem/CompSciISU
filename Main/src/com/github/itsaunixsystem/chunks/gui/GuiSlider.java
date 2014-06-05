@@ -7,7 +7,7 @@ import java.awt.geom.Rectangle2D;
 /**
 * Created by alex on 5/29/2014.
 */
-public class GuiSlider extends GuiBase implements Runnable{
+public class GuiSlider extends GuiBase {
     protected Runnable onDrag;
     protected String text;
     protected float sliderValue;
@@ -46,15 +46,9 @@ public class GuiSlider extends GuiBase implements Runnable{
         drawText(text, getXCenter(), getYCenter());
     }
 
-//    @Override
-//    public void mouseDragged()
-//    {
-//
-//    }
-
-    @Override
-    public void run() {
-        onDrag.run();
+    public void mouseDragged(int screenX, int screenY, int pointer)
+    {
+        sliderValue = ((screenX - (float)outline.getX()) / (float)outline.getWidth()) - 1.36f; //NEEDS FIXING, I DON'T UNDERSTAND YOUR LAYOUT!
     }
 
 }

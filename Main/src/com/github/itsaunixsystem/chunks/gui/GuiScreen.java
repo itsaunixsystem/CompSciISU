@@ -89,6 +89,8 @@ public abstract class GuiScreen extends Screen implements com.badlogic.gdx.Input
         elements.stream().filter(element -> element instanceof GuiBase).forEach(element -> {
             if (((GuiBase) element).withinBounds(screenX, yFlip)) {
                 element.onHover(pointer);
+                if(element instanceof GuiSlider)
+                    element.mouseDragged(screenX, screenY, pointer);
             } else {
                 element.offHover(pointer);
             }
